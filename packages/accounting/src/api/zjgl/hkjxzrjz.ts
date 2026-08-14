@@ -2,6 +2,13 @@
  * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/zjgl/hkjxzrjz
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/zjgl/hkjxzrjz.md
+ *
+ * 勘误/冲突注明（参数表与请求示例类型不一致，均按参数表取值）:
+ * - `glAccountId`：表 integer，示例 string（"1490882046853336"）
+ * - `incomeDisbursementTypeId`：表 integer，示例 string（"1490882046853558"）
+ * - `receiptAmount`：表 string，示例 number（99999）
+ * - `disbursementAmount`：表 string，示例 number（0）
+ * - `sequenceNum`：表 integer，示例 number（-1）
  */
 import type { ChanjetClient } from '../../client.js';
 

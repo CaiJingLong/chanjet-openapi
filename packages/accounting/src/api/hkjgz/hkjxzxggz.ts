@@ -107,7 +107,7 @@ export interface AddEmployeeResult {
   mobileForTax?: string;
   /** 姓名 */
   name?: string;
-  /** 自定义项（官方文档说明为空） */
+  /** 自定义项（文档未提供说明） */
   payrollCustomizedInput?: object;
   /** 工资 ID */
   payrollId?: number;

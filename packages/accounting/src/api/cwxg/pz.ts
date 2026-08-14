@@ -346,7 +346,9 @@ export interface AcctgTransFuzzySearchResultItemDetail {
   /** 凭证明细-科目 */
   glAccount?: AcctgTransFuzzySearchResultItemDetailGlAccount;
   /** 凭证明细-科目外币 */
-  currencyTO?: AcctgTransFuzzySearchResultItemDetailCurrencyTO;
+  currencyTO?: unknown;
+  /** 凭证明细-外币符号 */
+  symbol?: number;
   /** 凭证明细-科目计量单位 */
   baseUomTO?: number;
   /** 凭证明细-科目计量单位名称 */
@@ -389,14 +391,6 @@ export interface AcctgTransFuzzySearchResultItemDetailGlAccount {
   hasQtyAccunting?: boolean;
   /** 凭证明细-科目是否辅助核算 */
   hasSubsidiaryAccounting?: boolean;
-}
-
-/**
- * 凭证列表模糊搜索结果 - 凭证项 - 凭证明细 - 科目外币。
- */
-export interface AcctgTransFuzzySearchResultItemDetailCurrencyTO {
-  /** 凭证明细-外币符号 */
-  symbol?: number;
 }
 
 /**

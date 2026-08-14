@@ -1,5 +1,5 @@
 /**
- * 来源: https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
+ * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/jcda/bm-yg.md
  *
@@ -329,7 +329,7 @@ export function createBmYgApi(client: ChanjetClient) {
      * @param params.items[].statusEnum 状态 I: 无效, A: 有效
      * @returns 同步结果，`successResultMap` 为成功结果、`failResultMap` 为失败结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
      */
     async syncDepartment(params: SyncDepartmentParams): Promise<SyncDepartmentResult> {
       return client.request<SyncDepartmentResult>({
@@ -349,7 +349,7 @@ export function createBmYgApi(client: ChanjetClient) {
      * @param params.id 部门ID
      * @returns 删除结果，`successResultMap` 为成功结果、`failResultMap` 为失败结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
      */
     async removeDepartment(params: RemoveDepartmentParams): Promise<RemoveDepartmentResult> {
       return client.request<RemoveDepartmentResult>({
@@ -368,7 +368,7 @@ export function createBmYgApi(client: ChanjetClient) {
      * @param params.bookid 账套id
      * @returns 部门列表
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
      */
     async queryDepartment(params: QueryDepartmentParams): Promise<QueryDepartmentResult[]> {
       return client.request<QueryDepartmentResult[]>({
@@ -394,7 +394,7 @@ export function createBmYgApi(client: ChanjetClient) {
      * @param params.items[].departmentId 所属部门
      * @returns 同步结果，`successResultMap` 为成功结果、`failResultMap` 为失败结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
      */
     async syncEmployee(params: SyncEmployeeParams): Promise<SyncEmployeeResult> {
       return client.request<SyncEmployeeResult>({
@@ -414,7 +414,7 @@ export function createBmYgApi(client: ChanjetClient) {
      * @param params.id 员工ID
      * @returns 删除结果，`successResultMap` 为成功结果、`failResultMap` 为失败结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
      */
     async removeEmployee(params: RemoveEmployeeParams): Promise<RemoveEmployeeResult> {
       return client.request<RemoveEmployeeResult>({
@@ -433,7 +433,7 @@ export function createBmYgApi(client: ChanjetClient) {
      * @param params.bookid 账套id
      * @returns 员工列表
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
      */
     async queryEmployee(params: QueryEmployeeParams): Promise<QueryEmployeeResult[]> {
       return client.request<QueryEmployeeResult[]>({
@@ -461,7 +461,7 @@ export function createBmYgApi(client: ChanjetClient) {
      * @param params.items[].leavetime 离职时间
      * @returns 同步结果，`successResultMap` 为成功结果、`failResultMap` 为失败结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
      */
     async batchUpsertEmployee(
       params: BatchUpsertEmployeeParams,
@@ -482,7 +482,7 @@ export function createBmYgApi(client: ChanjetClient) {
      * @param params.code 部门编码
      * @returns 部门列表
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
      */
     async getDepartment(params: GetDepartmentParams): Promise<GetDepartmentResult[]> {
       return client.request<GetDepartmentResult[]>({
@@ -501,7 +501,7 @@ export function createBmYgApi(client: ChanjetClient) {
      * @param params.code 员工编码
      * @returns 员工列表
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
      */
     async getEmployee(params: GetEmployeeParams): Promise<GetEmployeeResult[]> {
       return client.request<GetEmployeeResult[]>({

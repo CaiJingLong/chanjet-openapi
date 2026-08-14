@@ -2,10 +2,19 @@
  * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/hkjgdzc/hkjjqcxgdzc
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/hkjgdzc/hkjjqcxgdzc.md
+ *
+ * 冲突注明：以下响应字段文档参数表标注为 string，但响应示例中为 number。
+ * 按参数表以 string 建模，实际返回可能为 number：
+ * - data.salvageValuePct（示例 0.05）
+ * - data.baseNetValue（示例 11099）
+ * - data.fixedAssetDepnEntry[].accumulatedMonths（示例 1）
+ * - data.fixedAssetDepnEntry[].baseOriginalValue（示例 11111）
+ * - data.fixedAssetDepnEntry[].baseOpenningDepnAmount（示例 11）
+ * - data.fixedAssetDepnEntry[].baseCurrentDepnAmount（示例 1）
+ * - data.fixedAssetDepnEntry[].usefulLifeMonths（示例 36）
  */
 import type { ChanjetClient } from '../../client.js';
 
-/** （外部接口）精确查询固定资产 - 请求参数 */
 export interface PreciseQueryAssetsParams {
   /** 账套 id，必填（路径参数） */
   bookid: string;

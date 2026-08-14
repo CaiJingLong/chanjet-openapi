@@ -14,7 +14,7 @@ export type QueryPagingParams = {
   pageSize: string;
   /** 页码，必填 */
   pageCount: string;
-  /** 明细账类型：0:标准 1:数量金额 2:外币金额 3:外币数量，必填 */
+  /** 明细账类型：0:标准 1:数量金额 ,2:外币金额,3外币数量，必填 */
   subsidiaryTag: string;
   /** 开始期间，必填 */
   startPeriod: string;
@@ -70,7 +70,7 @@ export type QueryPagingResultData = {
   baseEndingBalance?: string;
   /** 外币借方金额 */
   postedDr?: string;
-  /** 外币贷方金额 */
+  /** 外贷方金额 */
   postedCr?: string;
   /** 外币期末余额 */
   endingBalance?: string;
@@ -119,12 +119,13 @@ export type QueryPagingResultData = {
 /**
  * 明细账分页查询结果（扁平结构，无 code/data/successful 外壳，data 为行数组且与 totalCount 等同级）。
  *
- * 文档勘误：输出表 totalCount 声明 string、响应示例为数字；dynamicColumn/data 声明 array<string>、
- * 响应示例为对象数组；响应示例另含 endingPrice/groupCount/id/leaf/oppositeGlAccountName/postedCrPrice/
- * postedDrPrice/profitSubject/profitVoucher 等未列入输出表的字段。均以输出表为准。
+ * 文档勘误：输出表 totalCount 声明 string、响应示例为数字；dynamicColumn 声明 array<string>、
+ * 响应示例为对象数组；data 声明 array<string>、响应示例为对象数组，以响应示例为准；
+ * 响应示例另含 endingPrice/groupCount/id/leaf/oppositeGlAccountName/postedCrPrice/
+ * postedDrPrice/profitSubject/profitVoucher 等未列入输出表的字段。
  */
 export type QueryPagingResult = {
-  /** 数据集合 */
+  /** 参数表类型为 array<string>，响应示例为对象数组，以响应示例为准 */
   data?: QueryPagingResultData[];
   /** 总数 */
   totalCount?: string;
@@ -136,7 +137,7 @@ export type QueryPagingResult = {
 
 /** 序时账分页查询（GET query）查询参数。 */
 export type QueryParams = {
-  /** 查询条件json串，必填 */
+  /** 文档未提供说明，必填 */
   queryParam: object;
 };
 
@@ -198,7 +199,7 @@ export type QueryResultData = {
 
 /** 序时账分页查询结果。 */
 export type QueryResult = {
-  /** 数据集合 */
+  /** 文档未提供说明 */
   data?: QueryResultData[];
   /** 返回查询集合个数 */
   totalCount?: number;
@@ -208,7 +209,7 @@ export type QueryResult = {
 export type QueryGlSubDetailParams = {
   /** 开始期间 */
   startPeriod?: string;
-  /** 页码（文档标注必填） */
+  /** 文档未提供说明（文档标注必填） */
   pageCount: number;
   /** 开始级次 */
   startTreeLevel?: number;
@@ -222,11 +223,11 @@ export type QueryGlSubDetailParams = {
   endTreeLevel?: number;
   /** 科目Id */
   glAccountId?: number;
-  /** 每页数量（文档标注必填） */
+  /** 文档未提供说明（文档标注必填） */
   pageSize: number;
   /** 默认[1,2,3,4,5] */
   typeIdList?: string[];
-  /** 是否显示辅助信息 */
+  /** 文档未提供说明 */
   showSubInfo?: boolean;
 };
 
@@ -236,259 +237,259 @@ export type QueryGlSubDetailParamsQueryItemData = {
   project_id?: string[];
   /** 部门 */
   department_id?: string[];
-  /** 存货 */
+  /** 文档未提供说明 */
   product_id?: string[];
-  /** 客户 */
+  /** 文档未提供说明 */
   cust_id?: string[];
 };
 
 /** 科目辅助明细账（新）结果数据项。 */
 export type QueryGlSubDetailResultDataList = {
-  /** 科目名称 */
+  /** 文档未提供说明 */
   glAccountName?: string;
-  /** 借方单价 */
+  /** 文档未提供说明 */
   postedDrPrice?: number;
-  /** 上级科目id */
+  /** 文档未提供说明 */
   glAccountParentId?: number;
-  /** 余额方向 */
+  /** 文档未提供说明 */
   drCrDirection?: string;
-  /** 科目id（平铺字段） */
+  /** 文档未提供说明 */
   glAccountId_id?: number;
-  /** 单价 */
+  /** 文档未提供说明 */
   postedPrice?: number;
-  /** 借方发生额 */
+  /** 文档未提供说明 */
   postedDr?: number;
-  /** 存货名称 */
+  /** 文档未提供说明 */
   productName?: string;
-  /** 期末数量 */
+  /** 文档未提供说明 */
   endingQty?: number;
-  /** 汇率 */
+  /** 文档未提供说明 */
   exchangeRate?: number;
-  /** 科目全称 */
+  /** 文档未提供说明 */
   glAccountLongName?: string;
-  /** 本币期末余额 */
+  /** 文档未提供说明 */
   baseEndingBalance?: number;
-  /** 本币单价 */
+  /** 文档未提供说明 */
   basePostedPrice?: number;
-  /** 期间 */
+  /** 文档未提供说明 */
   period?: string;
-  /** 存货id */
+  /** 文档未提供说明 */
   productId?: number;
-  /** 科目编码（平铺字段） */
+  /** 文档未提供说明 */
   glAccountId_code?: string;
-  /** 上级科目id（平铺字段） */
+  /** 文档未提供说明 */
   glAccountId_parentId?: number;
-  /** 贷方发生额 */
+  /** 文档未提供说明 */
   postedCr?: number;
-  /** 借方期末余额 */
+  /** 文档未提供说明 */
   endingDrBalance?: number;
-  /** 辅助核算信息 */
+  /** 文档未提供说明 */
   assistantInfoVOList?: QueryGlSubDetailResultDataListAssistantInfoVOList[];
-  /** 本币贷方期末余额 */
+  /** 文档未提供说明 */
   baseEndingCrBalance?: number;
-  /** 科目全称（平铺字段） */
+  /** 文档未提供说明 */
   glAccountId_longName?: string;
-  /** 本币借方发生额 */
+  /** 文档未提供说明 */
   basePostedDr?: number;
-  /** 项目名称 */
+  /** 文档未提供说明 */
   projectName?: string;
-  /** 项目id */
+  /** 文档未提供说明 */
   projectId?: number;
-  /** 科目编码 */
+  /** 文档未提供说明 */
   glAccountCode?: string;
-  /** 本币贷方单价 */
+  /** 文档未提供说明 */
   basePostedCrPrice?: number;
-  /** 本币期末单价 */
+  /** 文档未提供说明 */
   baseEndingPrice?: number;
-  /** 贷方数量 */
+  /** 文档未提供说明 */
   postedCrQty?: number;
-  /** 期末余额 */
+  /** 文档未提供说明 */
   endingBalance?: number;
-  /** 科目id */
+  /** 文档未提供说明 */
   glAccountId?: number;
-  /** 期末单价 */
+  /** 文档未提供说明 */
   endingPrice?: number;
-  /** 合计行 */
+  /** 文档未提供说明 */
   isTotalRow?: boolean;
-  /** 本币借方单价 */
+  /** 文档未提供说明 */
   basePostedDrPrice?: number;
-  /** 借方数量 */
+  /** 文档未提供说明 */
   postedDrQty?: number;
-  /** 科目名称（平铺字段） */
+  /** 文档未提供说明 */
   glAccountId_name?: string;
-  /** 项目编码 */
+  /** 文档未提供说明 */
   projectCode?: string;
-  /** 本币贷方发生额 */
+  /** 文档未提供说明 */
   basePostedCr?: number;
-  /** 客户id */
+  /** 文档未提供说明 */
   custId?: number;
-  /** 一级科目名称 */
+  /** 文档未提供说明 */
   glAccountFirstName?: string;
-  /** 方向 */
+  /** 文档未提供说明 */
   direction?: string;
-  /** 期末汇率 */
+  /** 文档未提供说明 */
   endingExchangeRate?: number;
-  /** 贷方单价 */
+  /** 文档未提供说明 */
   postedCrPrice?: number;
-  /** 摘要 */
+  /** 文档未提供说明 */
   comments?: string;
-  /** 本币借方期末余额 */
+  /** 文档未提供说明 */
   baseEndingDrBalance?: number;
-  /** 客户名称 */
+  /** 文档未提供说明 */
   custName?: string;
-  /** 贷方期末余额 */
+  /** 文档未提供说明 */
   endingCrBalance?: number;
-  /** 客户编码 */
+  /** 文档未提供说明 */
   custCode?: string;
-  /** 存货编码 */
+  /** 文档未提供说明 */
   productCode?: string;
-  /** 币种编码 */
+  /** 文档未提供说明 */
   currencyCode?: string;
 };
 
 /** 科目辅助明细账（新）结果中的辅助核算信息项。 */
 export type QueryGlSubDetailResultDataListAssistantInfoVOList = {
-  /** 辅助核算类型id */
+  /** 文档未提供说明 */
   glSubAccountTypeId?: number;
-  /** 编码 */
+  /** 文档未提供说明 */
   code?: string;
-  /** 辅助核算类型编码 */
+  /** 文档未提供说明 */
   glSubAccountTypeCode?: string;
-  /** 顺序号 */
+  /** 文档未提供说明 */
   sequenceNum?: number;
-  /** 单据类型 */
+  /** 文档未提供说明 */
   docType?: string;
-  /** 辅助核算类型字段 */
+  /** 文档未提供说明 */
   glSubAccountTypeField?: string;
-  /** 多计量单位 */
+  /** 文档未提供说明 */
   multiUoms?: string;
-  /** 名称 */
+  /** 文档未提供说明 */
   name?: string;
-  /** 规格型号 */
+  /** 文档未提供说明 */
   specNo?: string;
-  /** id */
+  /** 文档未提供说明 */
   id?: number;
-  /** 平铺的关联实体属性 */
+  /** 文档未提供说明 */
   redMap?: QueryGlSubDetailResultDataListAssistantInfoVOListRedMap;
 };
 
 /** 辅助核算信息项中的平铺关联属性映射。 */
 export type QueryGlSubDetailResultDataListAssistantInfoVOListRedMap = {
-  /** 编码 */
+  /** 文档未提供说明 */
   no?: string;
-  /** 编码 */
+  /** 文档未提供说明 */
   code?: string;
-  /** 存货类型id */
+  /** 文档未提供说明 */
   productTypeId_id?: number;
-  /** 存货上级编码 */
+  /** 文档未提供说明 */
   'productId.parentId.code'?: string;
-  /** 规格型号 */
+  /** 文档未提供说明 */
   specNo?: string;
-  /** 往来单位分类编码 */
+  /** 文档未提供说明 */
   primaryPartyCategoryId_code?: string;
-  /** 存货类型id */
+  /** 文档未提供说明 */
   'productId.productTypeId.id'?: number;
-  /** 存货基本计量单位id */
+  /** 文档未提供说明 */
   'productId.baseUomId.id'?: number;
-  /** 往来单位分类 */
+  /** 文档未提供说明 */
   primaryPartyCategoryId?: QueryGlSubDetailResultDataListAssistantInfoVOListRedMapPrimaryPartyCategoryId;
-  /** 基本计量单位 */
+  /** 文档未提供说明 */
   baseUomId?: QueryGlSubDetailResultDataListAssistantInfoVOListRedMapBaseUomId;
-  /** 多计量单位 */
+  /** 文档未提供说明 */
   multiUoms?: string;
-  /** 往来单位分类id */
+  /** 文档未提供说明 */
   primaryPartyCategoryId_id?: number;
-  /** id */
+  /** 文档未提供说明 */
   id?: number;
-  /** 存货类型描述 */
+  /** 文档未提供说明 */
   productTypeId_description?: string;
-  /** 存货基本计量单位名称 */
+  /** 文档未提供说明 */
   'productId.baseUomId.uomName'?: string;
-  /** 上级编码 */
+  /** 文档未提供说明 */
   parentId_code?: string;
-  /** 客户往来单位分类编码 */
+  /** 文档未提供说明 */
   'custId.primaryPartyCategoryId.code'?: string;
-  /** 客户往来单位分类id */
+  /** 文档未提供说明 */
   'custId.primaryPartyCategoryId.id'?: number;
-  /** 存货类型描述 */
+  /** 文档未提供说明 */
   'productId.productTypeId.description'?: string;
-  /** 往来单位分类名称 */
+  /** 文档未提供说明 */
   primaryPartyCategoryId_name?: string;
-  /** 上级 */
+  /** 文档未提供说明 */
   parentId?: QueryGlSubDetailResultDataListAssistantInfoVOListRedMapParentId;
-  /** 存货类型 */
+  /** 文档未提供说明 */
   productTypeId?: QueryGlSubDetailResultDataListAssistantInfoVOListRedMapProductTypeId;
-  /** 存货上级id */
+  /** 文档未提供说明 */
   'productId.parentId.id'?: number;
-  /** 项目分类 */
+  /** 文档未提供说明 */
   projectCategoryId?: QueryGlSubDetailResultDataListAssistantInfoVOListRedMapProjectCategoryId;
-  /** 存货上级名称 */
+  /** 文档未提供说明 */
   'productId.parentId.name'?: string;
-  /** 基本计量单位id */
+  /** 文档未提供说明 */
   baseUomId_id?: number;
-  /** 上级id */
+  /** 文档未提供说明 */
   parentId_id?: number;
-  /** 基本计量单位名称 */
+  /** 文档未提供说明 */
   baseUomId_uomName?: string;
-  /** 项目分类id */
+  /** 文档未提供说明 */
   projectCategoryId_id?: number;
-  /** 名称 */
+  /** 文档未提供说明 */
   name?: string;
-  /** 上级名称 */
+  /** 文档未提供说明 */
   parentId_name?: string;
-  /** 客户往来单位分类名称 */
+  /** 文档未提供说明 */
   'custId.primaryPartyCategoryId.name'?: string;
-  /** 项目项目分类id */
+  /** 文档未提供说明 */
   'projectId.projectCategoryId.id'?: number;
 };
 
 /** 往来单位分类。 */
 export type QueryGlSubDetailResultDataListAssistantInfoVOListRedMapPrimaryPartyCategoryId = {
-  /** 编码 */
+  /** 文档未提供说明 */
   code?: string;
-  /** 名称 */
+  /** 文档未提供说明 */
   name?: string;
-  /** id */
+  /** 文档未提供说明 */
   id?: number;
 };
 
 /** 基本计量单位。 */
 export type QueryGlSubDetailResultDataListAssistantInfoVOListRedMapBaseUomId = {
-  /** 计量单位名称 */
+  /** 文档未提供说明 */
   uomName?: string;
-  /** id */
+  /** 文档未提供说明 */
   id?: number;
 };
 
 /** 上级分类。 */
 export type QueryGlSubDetailResultDataListAssistantInfoVOListRedMapParentId = {
-  /** 编码 */
+  /** 文档未提供说明 */
   code?: string;
-  /** 名称 */
+  /** 文档未提供说明 */
   name?: string;
-  /** id */
+  /** 文档未提供说明 */
   id?: number;
 };
 
 /** 存货类型。 */
 export type QueryGlSubDetailResultDataListAssistantInfoVOListRedMapProductTypeId = {
-  /** 描述 */
+  /** 文档未提供说明 */
   description?: string;
-  /** id */
+  /** 文档未提供说明 */
   id?: number;
 };
 
 /** 项目分类。 */
 export type QueryGlSubDetailResultDataListAssistantInfoVOListRedMapProjectCategoryId = {
-  /** id */
+  /** 文档未提供说明 */
   id?: number;
 };
 
 /** 科目辅助明细账（新）结果。 */
 export type QueryGlSubDetailResult = {
-  /** 数据列表 */
+  /** 文档未提供说明 */
   dataList?: QueryGlSubDetailResultDataList[];
-  /** 总数 */
+  /** 文档未提供说明 */
   totalCount?: number;
 };
 
@@ -516,93 +517,89 @@ export type QueryPagingJsonResultData = {
   acctgTransCode?: string;
   /** 本币期末余额 */
   baseEndingBalance?: number;
-  /** 本币贷方期末余额 */
+  /** 文档未提供说明 */
   baseEndingCrBalance?: number;
-  /** 本币借方期末余额 */
+  /** 文档未提供说明 */
   baseEndingDrBalance?: number;
-  /** 本币期末单价 */
+  /** 文档未提供说明 */
   baseEndingPrice?: number;
   /** 本币贷方发生额 */
   basePostedCr?: number;
-  /** 本币贷方单价 */
+  /** 文档未提供说明 */
   basePostedCrPrice?: number;
-  /** 本币借方发生额 */
-  basePostedDr?: number;
-  /** 本币借方单价 */
+  /** 文档未提供说明 */
   basePostedDrPrice?: number;
-  /** 本币单价 */
+  /** 文档未提供说明 */
   basePostedPrice?: number;
   /** 摘要 */
   comments?: string;
-  /** 贷方多栏 */
+  /** 文档未提供说明 */
   crMultiColumn?: object;
-  /** 明细标志 */
+  /** 文档未提供说明 */
   detail?: boolean;
-  /** 余额方向 */
+  /** 文档未提供说明 */
   drCrDirection?: string;
-  /** 借方多栏 */
+  /** 文档未提供说明 */
   drMultiColumn?: object;
-  /** 期末多栏 */
+  /** 文档未提供说明 */
   endMultiColumn?: object;
-  /** 期末余额 */
-  endingBalance?: number;
-  /** 贷方期末余额 */
+  /** 文档未提供说明 */
   endingCrBalance?: number;
-  /** 借方期末余额 */
+  /** 文档未提供说明 */
   endingDrBalance?: number;
-  /** 期末汇率 */
+  /** 文档未提供说明 */
   endingExchangeRate?: number;
-  /** 期末单价 */
+  /** 文档未提供说明 */
   endingPrice?: number;
-  /** 期末数量 */
+  /** 文档未提供说明 */
   endingQty?: number;
-  /** 汇率 */
+  /** 文档未提供说明 */
   exchangeRate?: number;
   /** 科目code */
   glAccountCode?: string;
-  /** 一级科目名称 */
+  /** 文档未提供说明 */
   glAccountFirstName?: string;
-  /** 科目id */
+  /** 文档未提供说明 */
   glAccountId?: number;
-  /** 科目全称 */
+  /** 文档未提供说明 */
   glAccountLongName?: string;
   /** 科目名称 */
   glAccountName?: string;
-  /** 分组号 */
+  /** 文档未提供说明 */
   groupCount?: number;
-  /** 排序id */
+  /** 文档未提供说明 */
   id?: number;
-  /** 合计行 */
+  /** 文档未提供说明 */
   isTotalRow?: boolean;
-  /** 末级 */
+  /** 文档未提供说明 */
   leaf?: boolean;
   /** 日期 */
   period?: string;
-  /** 贷方发生额 */
+  /** 文档未提供说明 */
   postedCr?: number;
-  /** 贷方单价 */
+  /** 文档未提供说明 */
   postedCrPrice?: number;
-  /** 贷方数量 */
+  /** 文档未提供说明 */
   postedCrQty?: number;
-  /** 借方发生额 */
+  /** 文档未提供说明 */
   postedDr?: number;
-  /** 借方单价 */
+  /** 文档未提供说明 */
   postedDrPrice?: number;
-  /** 借方数量 */
+  /** 文档未提供说明 */
   postedDrQty?: number;
-  /** 单价 */
+  /** 文档未提供说明 */
   postedPrice?: number;
-  /** 损益科目 */
+  /** 文档未提供说明 */
   profitSubject?: boolean;
-  /** 损益凭证 */
+  /** 文档未提供说明 */
   profitVoucher?: boolean;
-  /** 凭证id */
+  /** 文档未提供说明 */
   voucherId?: number;
 };
 
 /** 明细账分页查询(传参优化post)结果。 */
 export type QueryPagingJsonResult = {
-  /** 数据集合 */
+  /** 文档未提供说明 */
   data?: QueryPagingJsonResultData[];
   /** 总数 */
   totalCount?: number;
@@ -623,7 +620,7 @@ export function createMxbApi(client: ChanjetClient) {
      * @param params.queryParam 查询条件json串，必填
      * @param params.pageSize 每页数量，必填
      * @param params.pageCount 页码，必填
-     * @param params.subsidiaryTag 明细账类型：0:标准 1:数量金额 2:外币金额 3:外币数量，必填
+     * @param params.subsidiaryTag 明细账类型：0:标准 1:数量金额 ,2:外币金额,3外币数量，必填
      * @param params.startPeriod 开始期间，必填
      * @param params.endPeriod 结束期间，必填
      * @param params.startGlAccountCode 开始科目编码（与科目id两者必须传一个），必填
@@ -638,12 +635,12 @@ export function createMxbApi(client: ChanjetClient) {
      * @param params.comments 摘要，可选
      * @param params.startDate 开始日期，可选
      * @param params.endDate 结束日期，可选
-     * @param params.queryWithAssistant 是否科目辅助明细账查询（如果为true返回结果增加assistantTypeList），可选
+     * @param params.queryWithAssistant 是否科目辅助明细账查询（如果为true返回结果增加assistantTypeList,为当前科目关联的辅助核算类型），可选
      * @param params.assistants 科目辅助明细账辅助核算条件，可选
      * @param params.isGlSubAccount 是否是辅助核算，可选
      * @param params.startAssistant 开始辅助项，可选
      * @param params.endAssistant 结束辅助项，可选
-     * @param params.queryType 查询类型：simple:单科目查询；exact:多科目范围查询，可选
+     * @param params.queryType 查询类型：simple:单科目查询（起止科目编码相同）；exact:多科目范围查询（起止科目范围），可选
      * @param params.showAssistant 显示辅助核算：当辅助核算的时候，如果要显示dynamicColumn信息，需要在查询中新增 "showAssistant":true，可选
      * @returns 明细账分页查询结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
@@ -666,7 +663,7 @@ export function createMxbApi(client: ChanjetClient) {
      *
      * @param bookid 账套id，必填
      * @param params 查询条件
-     * @param params.queryParam 查询条件json串，必填
+     * @param params.queryParam 文档未提供说明，必填
      * @returns 序时账分页查询结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
      * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/zb/mxb
@@ -689,20 +686,20 @@ export function createMxbApi(client: ChanjetClient) {
      * @param bookid 账套id，必填（文档路径参数表字段名为 book-id 且类型为 integer，按 URL 占位符取 bookid）
      * @param params 查询条件
      * @param params.startPeriod 开始期间，可选
-     * @param params.pageCount 页码，必填
+     * @param params.pageCount 文档未提供说明，必填
      * @param params.startTreeLevel 开始级次，可选
      * @param params.endPeriod 结束期间，可选
      * @param params.containsDisable 包含禁用，可选
      * @param params.queryItemData 辅助核算，可选
      * @param params.queryItemData.project_id 项目，可选
      * @param params.queryItemData.department_id 部门，可选
-     * @param params.queryItemData.product_id 存货，可选
-     * @param params.queryItemData.cust_id 客户，可选
+     * @param params.queryItemData.product_id 文档未提供说明，可选
+     * @param params.queryItemData.cust_id 文档未提供说明，可选
      * @param params.endTreeLevel 结束级次，可选
      * @param params.glAccountId 科目Id，可选
-     * @param params.pageSize 每页数量，必填
+     * @param params.pageSize 文档未提供说明，必填
      * @param params.typeIdList 辅助核算类型id列表，默认[1,2,3,4,5]，可选
-     * @param params.showSubInfo 是否显示辅助信息，可选
+     * @param params.showSubInfo 文档未提供说明，可选
      * @returns 科目辅助明细账结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
      * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/zb/mxb

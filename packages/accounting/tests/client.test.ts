@@ -95,11 +95,11 @@ describe('ChanjetClient 请求形态', () => {
     expect(JSON.parse(init?.body as string)).toEqual(body);
   });
 
-  it('GET 忽略请求体', async () => {
+  it('GET 请求体 JSON 序列化（官方 getInvoiceInfo 等接口需要 GET+Body）', async () => {
     const { client, fetchImpl } = makeClient();
     fetchImpl.mockResolvedValueOnce(jsonResponse({ code: '000000', data: 1 }));
     await client.request({ method: 'GET', path: '/x', body: { a: 1 } });
-    expect(fetchImpl.mock.calls[0]?.[1]?.body).toBeUndefined();
+    expect(JSON.parse(fetchImpl.mock.calls[0]?.[1]?.body as string)).toEqual({ a: 1 });
   });
 
   it('携带 Header 四件套', async () => {

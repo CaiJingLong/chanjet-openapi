@@ -1,5 +1,5 @@
 /**
- * 来源: https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/xm
+ * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/xm
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/jcda/xm.md
  *
@@ -198,7 +198,7 @@ export function createXmApi(client: ChanjetClient) {
      * @param params.id id
      * @returns 删除结果，`successResultMap` 为成功结果、`failResultMap` 为失败结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/xm
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/xm
      */
     async remove(params: RemoveParams): Promise<RemoveResult> {
       return client.request<RemoveResult>({
@@ -222,7 +222,7 @@ export function createXmApi(client: ChanjetClient) {
      * @param params.items[].code 项目编码
      * @returns 同步结果，`successResultMap` 为成功结果、`failResultMap` 为失败结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/xm
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/xm
      */
     async batchUpsert(params: BatchUpsertParams): Promise<BatchUpsertResult> {
       return client.request<BatchUpsertResult>({
@@ -245,7 +245,7 @@ export function createXmApi(client: ChanjetClient) {
      * @param params.pageNo 当前页（默认：1）
      * @returns 项目分页结果，`rows` 为项目列表
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/xm
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/xm
      */
     async query(params: QueryParams): Promise<QueryResult> {
       return client.request<QueryResult>({
@@ -285,7 +285,7 @@ export function createXmApi(client: ChanjetClient) {
      * @param params.customizedFieldList[].value 自定义项值
      * @returns 修改结果列表，每项包含错误信息、错误码与项目 id
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/xm
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/xm
      */
     async update(params: UpdateParams): Promise<UpdateResult[]> {
       return client.request<UpdateResult[]>({

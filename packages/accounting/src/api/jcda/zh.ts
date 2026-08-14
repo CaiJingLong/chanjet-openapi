@@ -1,5 +1,5 @@
 /**
- * 来源: https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/zh
+ * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/zh
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/jcda/zh.md
  *
@@ -141,7 +141,7 @@ export function createZhApi(client: ChanjetClient) {
      * @param params.comments 备注
      * @returns 新增结果，`code` 为账号编码
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/zh
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/zh
      */
     async add(params: AddParams): Promise<AddResult> {
       return client.request<AddResult>({
@@ -169,7 +169,7 @@ export function createZhApi(client: ChanjetClient) {
      * @param params.codes 账号编码列表
      * @returns 删除结果，`success` 为成功编码、`fail` 为失败编码
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/zh
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/zh
      */
     async remove(params: RemoveParams): Promise<RemoveResult> {
       return client.request<RemoveResult>({
@@ -195,7 +195,7 @@ export function createZhApi(client: ChanjetClient) {
      * @param params.comments 备注
      * @returns 修改结果，`code` 为账号编码
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/zh
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/zh
      */
     async update(params: UpdateParams): Promise<UpdateResult> {
       return client.request<UpdateResult>({
@@ -223,7 +223,7 @@ export function createZhApi(client: ChanjetClient) {
      * @param params.code 账号编码
      * @returns 账号详情
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/zh
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/zh
      */
     async query(params: QueryParams): Promise<QueryResult> {
       return client.request<QueryResult>({

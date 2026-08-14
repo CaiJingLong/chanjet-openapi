@@ -1,5 +1,5 @@
 /**
- * 来源: https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
+ * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/jcda/kmjqc.md
  *
@@ -782,7 +782,7 @@ export function createKmjqcApi(client: ChanjetClient) {
      * @param params.bookId 账套id
      * @returns 科目及期初数据列表
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
      */
     async getInitBalanceList(
       params: GetInitBalanceListParams,
@@ -805,7 +805,7 @@ export function createKmjqcApi(client: ChanjetClient) {
      * @param params.name 名称模糊检索
      * @returns 科目列表；常见错误码见 {@link GET_INIT_BALANCE_LISTS_ERRORS}
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
      */
     async getInitBalanceLists(
       params: GetInitBalanceListsParams,
@@ -830,7 +830,7 @@ export function createKmjqcApi(client: ChanjetClient) {
      * @param params.isReorg 是否重分类
      * @returns 试算平衡结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
      */
     async trialBalance(params: TrialBalanceParams): Promise<TrialBalanceResult> {
       return client.request<TrialBalanceResult>({
@@ -876,7 +876,7 @@ export function createKmjqcApi(client: ChanjetClient) {
      * @param params.assistantDetail[].productId 库存id
      * @returns 新增科目的id
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
      */
     async addGlAccount(params: AddGlAccountParams): Promise<AddGlAccountResult> {
       return client.request<AddGlAccountResult>({
@@ -921,7 +921,7 @@ export function createKmjqcApi(client: ChanjetClient) {
      * @param params.subAccountBalance.glSubAccount.productNo 存货、单位
      * @returns 更新结果，键为入参索引、值为科目辅助余额id
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
      */
     async addAssistaccounting(
       params: AddAssistaccountingParams,
@@ -943,7 +943,7 @@ export function createKmjqcApi(client: ChanjetClient) {
      * @param params.glAccountCode 科目编号
      * @returns 科目期初辅助余额列表
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
      */
     async getSubAccountInitBalanceLists(
       params: GetSubAccountInitBalanceListsParams,
@@ -965,7 +965,7 @@ export function createKmjqcApi(client: ChanjetClient) {
      * @param params.glAccount.baseEndingBalance 期末余额：本币
      * @returns Long 类型的 id
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
      */
     async updateBalanceDuiaWang(
       params: UpdateBalanceDuiaWangParams,
@@ -1004,9 +1004,16 @@ export function createKmjqcApi(client: ChanjetClient) {
      * @param params.glAccount.houseBankId 银行编码
      * @param params.assistantTypes 辅助核算类别
      * @param params.assistantDetail 辅助核算档案
+     * @param params.assistantDetail.glAccountId 科目Id
+     * @param params.assistantDetail.projectId 项目Id
+     * @param params.assistantDetail.departmentId 部门id
+     * @param params.assistantDetail.custId 客户id
+     * @param params.assistantDetail.vendorId 供应商id
+     * @param params.assistantDetail.employeeId 员工id
+     * @param params.assistantDetail.productId 库存id
      * @returns 更新结果，`result` 为更新是否成功，失败时 `errorMsg` 为错误信息
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
      */
     async updateAccountDuia(params: UpdateAccountDuiaParams): Promise<UpdateAccountDuiaResult> {
       return client.request<UpdateAccountDuiaResult>({
@@ -1030,9 +1037,26 @@ export function createKmjqcApi(client: ChanjetClient) {
      * @param params.bookid 账套id
      * @param params.tag 科目余额新增标识
      * @param params.subAccountBalance 辅助余额信息
+     * @param params.subAccountBalance.code 文档未提供说明
+     * @param params.subAccountBalance.postedCrQty 文档未提供说明
+     * @param params.subAccountBalance.endingBalance 文档未提供说明
+     * @param params.subAccountBalance.postedCr 文档未提供说明
+     * @param params.subAccountBalance.openingQty 文档未提供说明
+     * @param params.subAccountBalance.endingQty 文档未提供说明
+     * @param params.subAccountBalance.basePostedCr 文档未提供说明
+     * @param params.subAccountBalance.basePostedDr 文档未提供说明
+     * @param params.subAccountBalance.openingBalance 文档未提供说明
+     * @param params.subAccountBalance.baseEndingBalance 文档未提供说明
+     * @param params.subAccountBalance.glSubAccount 文档未提供说明
+     * @param params.subAccountBalance.glSubAccount.custNo 文档未提供说明
+     * @param params.subAccountBalance.glSubAccount.vendorNo 文档未提供说明
+     * @param params.subAccountBalance.glSubAccount.projectNo 文档未提供说明
+     * @param params.subAccountBalance.glSubAccount.departmentNo 文档未提供说明
+     * @param params.subAccountBalance.glSubAccount.employeeNo 文档未提供说明
+     * @param params.subAccountBalance.glSubAccount.productNo 文档未提供说明
      * @returns 更新结果，键为入参索引、值为科目辅助余额表id
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
      */
     async addAssistaccountingToJSONObject(
       params: AddAssistaccountingToJSONObjectParams,
@@ -1053,7 +1077,7 @@ export function createKmjqcApi(client: ChanjetClient) {
      * @param params.glAccountCode 科目编号
      * @returns 科目期初辅助余额列表，`datas` 为数据列表
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
      */
     async getInitBalanceListsToJSONObject(
       params: GetInitBalanceListsToJSONObjectParams,

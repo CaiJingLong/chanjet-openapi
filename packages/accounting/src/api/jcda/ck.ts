@@ -1,5 +1,5 @@
 /**
- * 来源: https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/ck
+ * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/ck
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/jcda/ck.md
  *
@@ -83,7 +83,7 @@ export function createCkApi(client: ChanjetClient) {
      * @param params.items[].name 仓库名称
      * @returns 同步结果，`successResultMap` 为成功结果、`failResultMap` 为失败结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/ck
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/ck
      */
     async batchUpsertt(params: BatchUpserttParams): Promise<BatchUpserttResult> {
       return client.request<BatchUpserttResult>({
@@ -109,7 +109,7 @@ export function createCkApi(client: ChanjetClient) {
      * @param params.id 仓库id
      * @returns 删除结果，`successResultMap` 为成功结果、`failResultMap` 为失败结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/ck
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/ck
      */
     async remove(params: RemoveParams): Promise<RemoveResult> {
       return client.request<RemoveResult>({

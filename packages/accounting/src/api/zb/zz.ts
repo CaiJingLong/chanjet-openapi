@@ -16,7 +16,7 @@ export type QueryParams = {
 export type QueryResultItem = {
   /** 借方本币金额 */
   basePostedDr?: string;
-  /** 贷方本币金额 */
+  /** 贷方方本币金额 */
   basePostedCr?: string;
   /** 期末本币 */
   baseEndingBalance?: string;

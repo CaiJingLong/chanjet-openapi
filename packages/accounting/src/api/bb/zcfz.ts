@@ -128,7 +128,7 @@ export interface GetOldBalanceSheetParams {
   bookid: string;
   /** 期间，必填 */
   period: string;
-  /** 是否重分类，可选 */
+  /** 文档未提供说明，可选 */
   isReorg?: string;
 }
 
@@ -161,11 +161,11 @@ export interface GetNewBalanceSheetParams {
 
 /** 获取新版结构化资产负债表结果。 */
 export interface GetNewBalanceSheetResult {
-  /** 状态码 */
+  /** 文档未提供说明 */
   code?: string;
-  /** 结构化数据 */
+  /** 文档未提供说明 */
   data?: GetNewBalanceSheetResultDataItem[];
-  /** 是否成功 */
+  /** 文档未提供说明 */
   successful?: boolean;
 }
 
@@ -179,7 +179,7 @@ export interface GetNewBalanceSheetResultDataItem {
   assetRowText?: string;
   /** 资产年初余额 */
   assetYearBaseOpeningBalance?: number;
-  /** 是否可编辑 */
+  /** 文档未提供说明 */
   editable?: boolean;
   /** 负债和所有者权益期末余额 */
   equityBaseEndingBalance?: number;
@@ -288,14 +288,15 @@ export function createZcfzApi(client: ChanjetClient) {
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
      * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/bb/zcfz
      */
-    getNewBalanceSheet(params: GetNewBalanceSheetParams): Promise<GetNewBalanceSheetResult> {
+    async getNewBalanceSheet(params: GetNewBalanceSheetParams): Promise<GetNewBalanceSheetResult> {
       const { bookid, ...query } = params;
-      return client.request<GetNewBalanceSheetResult>({
+      const envelope = await client.requestEnvelope<GetNewBalanceSheetResult>({
         method: 'GET',
         path: '/accounting/fin/getNewBalanceSheet/{bookid}',
         pathParams: { bookid },
         query,
       });
+      return envelope as unknown as GetNewBalanceSheetResult;
     },
   };
 }

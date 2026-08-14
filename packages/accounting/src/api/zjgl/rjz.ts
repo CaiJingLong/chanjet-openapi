@@ -24,137 +24,137 @@ export interface ListParams {
 
 /** 日记账查询结果中 `item` 元素的创建人/最后修改人。 */
 export interface ListItemUser {
-  /** 姓名 */
+  /** 文档未提供说明 */
   name?: string;
-  /** id */
+  /** 文档未提供说明 */
   id?: number;
-  /** 用户名 */
+  /** 文档未提供说明 */
   userName?: string;
 }
 
 /** 日记账查询结果中 `item` 元素的日记账来源枚举。 */
 export interface ListItemCashJournalSrcEnum {
-  /** id */
+  /** 文档未提供说明 */
   id?: number;
-  /** 显示名 */
+  /** 文档未提供说明 */
   label?: string;
-  /** 枚举值 */
+  /** 文档未提供说明 */
   value?: string;
 }
 
 /** 日记账查询结果中 `item` 数组的单个元素。 */
 export interface ListItem {
-  /** 本币收入 */
+  /** 文档未提供说明 */
   baseReceiptAmount?: number;
-  /** 顺序号 */
+  /** 文档未提供说明 */
   sequenceNum?: number;
-  /** 是否期初 */
+  /** 文档未提供说明 */
   isBeginning?: boolean;
-  /** 账套是否同名 */
+  /** 文档未提供说明 */
   isAccountBookSameName?: boolean;
-  /** 银行对账状态 */
+  /** 文档未提供说明 */
   vCashBankStatementCheckStatus?: boolean;
-  /** 收支类型名称 */
+  /** 文档未提供说明 */
   incomeDisbursementTypeName?: string;
-  /** id */
+  /** 文档未提供说明 */
   id?: number;
-  /** 币种ID */
+  /** 文档未提供说明 */
   currencyId?: number;
-  /** 创建人 */
+  /** 文档未提供说明 */
   createdUser?: ListItemUser;
-  /** 收支类型ID */
+  /** 文档未提供说明 */
   incomeDisbursementTypeId?: number;
-  /** 关联日记账ID */
+  /** 文档未提供说明 */
   refCashJournalEntryId?: number;
-  /** 核销明细列表 */
+  /** 文档未提供说明 */
   vApplyDetailList?: Record<string, unknown>[];
-  /** 收支大类 */
+  /** 文档未提供说明 */
   incomeDisbursementCategoryEnum?: string;
-  /** 本币余额 */
+  /** 文档未提供说明 */
   baseBalanceAmount?: number;
-  /** 收支大类名称 */
+  /** 文档未提供说明 */
   incomeDisbursementCategoryName?: string;
-  /** 科目code */
+  /** 文档未提供说明 */
   glAccountCode?: string;
-  /** 日记账来源枚举 */
+  /** 文档未提供说明 */
   cashJournalSrcEnum?: ListItemCashJournalSrcEnum;
-  /** 日期 */
+  /** 文档未提供说明 */
   bizDate?: string;
-  /** 科目ID */
+  /** 文档未提供说明 */
   glAccountId?: number;
-  /** 余额汇率 */
+  /** 文档未提供说明 */
   balanceAmountExchangeRate?: number;
-  /** 收入 */
+  /** 文档未提供说明 */
   receiptAmount?: number;
-  /** 科目期间 */
+  /** 文档未提供说明 */
   glAccountPeriod?: string;
-  /** 最后修改人 */
+  /** 文档未提供说明 */
   lastUpdatedUser?: ListItemUser;
-  /** 期间 */
+  /** 文档未提供说明 */
   acctgPeriod?: string;
-  /** 摘要 */
+  /** 文档未提供说明 */
   comments?: string;
-  /** 收入汇率 */
+  /** 文档未提供说明 */
   receiptExchangeRate?: number;
-  /** 余额 */
+  /** 文档未提供说明 */
   balanceAmount?: number;
 }
 
 /** 日记账查询结果中的 `total` 汇总。 */
 export interface ListTotal {
-  /** 总收入 */
+  /** 文档未提供说明 */
   totalIncome?: number;
-  /** 本币总余额 */
+  /** 文档未提供说明 */
   totalBalanceBase?: number;
-  /** 总支出 */
+  /** 文档未提供说明 */
   totalPay?: number;
-  /** 总余额 */
+  /** 文档未提供说明 */
   totalBalance?: number;
-  /** 本币总支出 */
+  /** 文档未提供说明 */
   totalPayBase?: number;
-  /** 本币总收入 */
+  /** 文档未提供说明 */
   totalIncomeBase?: number;
 }
 
 /** 日记账查询结果中的 `prev` 上期信息。 */
 export interface ListPrev {
-  /** 期间 */
+  /** 文档未提供说明 */
   acctgPeriod?: string;
-  /** 余额 */
+  /** 文档未提供说明 */
   balanceAmount?: number;
-  /** 日期类型 */
+  /** 文档未提供说明 */
   dateType?: number;
-  /** 方向 */
+  /** 文档未提供说明 */
   direction?: string;
-  /** 附加信息 */
+  /** 文档未提供说明 */
   extraInfoMap?: Record<string, unknown>;
-  /** 科目ID */
+  /** 文档未提供说明 */
   glAccountId?: number;
-  /** 科目期间与会计期间 */
+  /** 文档未提供说明 */
   glAccountPeriodAndAcctgPeriod?: string;
-  /** 账套是否同名 */
+  /** 文档未提供说明 */
   isAccountBookSameName?: boolean;
-  /** 是否期初 */
+  /** 文档未提供说明 */
   isBeginning?: boolean;
-  /** 最后更新时间 */
+  /** 文档未提供说明 */
   lastUpdatedStamp?: string;
-  /** 租户ID */
+  /** 文档未提供说明 */
   tenantId?: number;
-  /** 银行对账状态 */
+  /** 文档未提供说明 */
   vCashBankStatementCheckStatus?: boolean;
 }
 
 /** 日记账查询结果中的 `totalAll` 全量汇总。 */
 export interface ListTotalAll {
-  /** 总条数 */
+  /** 文档未提供说明 */
   totalCount?: number;
-  /** 总收入 */
+  /** 文档未提供说明 */
   totalIncome?: number;
-  /** 本币总收入 */
+  /** 文档未提供说明 */
   totalIncomeBase?: number;
-  /** 总支出 */
+  /** 文档未提供说明 */
   totalPay?: number;
-  /** 本币总支出 */
+  /** 文档未提供说明 */
   totalPayBase?: number;
 }
 
@@ -164,37 +164,37 @@ export interface ListTotalAll {
  * 注：该接口返回扁平结构（无 `code`/`data`/`successful` 外壳）。
  */
 export interface ListResult {
-  /** 日记账数组 */
+  /** 文档未提供说明 */
   item?: ListItem[];
-  /** 汇总 */
+  /** 文档未提供说明 */
   total?: ListTotal;
-  /** 上期信息 */
+  /** 文档未提供说明 */
   prev?: ListPrev;
-  /** 全量汇总 */
+  /** 文档未提供说明 */
   totalAll?: ListTotalAll;
-  /** 期初余额 */
+  /** 文档未提供说明 */
   initBalance?: number;
-  /** 总条数 */
+  /** 文档未提供说明 */
   totalCount?: number;
 }
 
 /** 修改日记账请求体中日记账来源枚举。 */
 export interface UpdateCashJournalBodyCashJournalSrcEnum {
-  /** id */
+  /** 文档未提供说明 */
   id?: number;
-  /** 显示名 */
+  /** 文档未提供说明 */
   label?: string;
-  /** 枚举值 */
+  /** 文档未提供说明 */
   value?: string;
 }
 
 /** 修改日记账请求体中创建人/最后修改人。 */
 export interface UpdateCashJournalBodyUser {
-  /** id */
+  /** 文档未提供说明 */
   id?: number;
-  /** 姓名 */
+  /** 文档未提供说明 */
   name?: string;
-  /** 用户名 */
+  /** 文档未提供说明 */
   userName?: string;
 }
 
@@ -204,13 +204,13 @@ export interface UpdateCashJournalBody {
   acctgPeriod?: string;
   /** 余额 */
   balanceAmount?: number;
-  /** 余额汇率 */
+  /** 文档未提供说明 */
   balanceAmountExchangeRate?: string;
   /** 本币余额 */
   baseBalanceAmount?: number;
-  /** 本币支出 */
+  /** 支出 */
   baseDisbursementAmount?: number;
-  /** 本币收入 */
+  /** 收入 */
   baseReceiptAmount?: number;
   /** 日期 */
   bizDate?: string;
@@ -220,11 +220,11 @@ export interface UpdateCashJournalBody {
   comments?: string;
   /** 创建人 */
   createdUserId?: UpdateCashJournalBodyUser;
-  /** 日期类型 */
+  /** 文档未提供说明 */
   dateType?: number;
   /** 支出 */
   disbursementAmount?: number;
-  /** 支出汇率 */
+  /** 文档未提供说明 */
   disbursementExchangeRate?: string;
   /** 科目id */
   glAccountId?: number;
@@ -234,33 +234,33 @@ export interface UpdateCashJournalBody {
   id?: number;
   /** 收支类型id */
   incomeDisbursementTypeId?: number;
-  /** 账套是否同名 */
+  /** 文档未提供说明 */
   isAccountBookSameName?: boolean;
   /** 是否期初 */
   isBeginning?: boolean;
   /** 是否合计 */
   isTotalRow?: boolean;
-  /** 最后修改人 */
+  /** 文档未提供说明 */
   lastUpdatedUserId?: UpdateCashJournalBodyUser;
-  /** 上期 */
+  /** 文档未提供说明 */
   prev?: boolean;
   /** 收入 */
   receiptAmount?: number;
-  /** 收入汇率 */
+  /** 文档未提供说明 */
   receiptExchangeRate?: string;
-  /** 关联日记账ID */
+  /** 文档未提供说明 */
   refCashJournalEntryId?: number;
-  /** 选择是否失效 */
+  /** 文档未提供说明 */
   selectionInvalid?: boolean;
-  /** 顺序号 */
+  /** 文档未提供说明 */
   sequenceNum?: number;
-  /** 顺序号 */
+  /** 文档未提供说明 */
   sequenceNumber?: number;
-  /** 银行对账状态 */
+  /** 文档未提供说明 */
   vCashBankStatementCheckStatus?: boolean;
-  /** 是否结账 */
+  /** 文档未提供说明 */
   hasJiezhang?: boolean;
-  /** uuid */
+  /** 文档未提供说明 */
   uuid?: string;
   /** 标志：update */
   editFlag?: string;
@@ -320,44 +320,44 @@ export function createRjzApi(client: ChanjetClient) {
      * @param params.body 请求体
      * @param params.body.acctgPeriod 期间
      * @param params.body.balanceAmount 余额
-     * @param params.body.balanceAmountExchangeRate 余额汇率
+     * @param params.body.balanceAmountExchangeRate 文档未提供说明
      * @param params.body.baseBalanceAmount 本币余额
-     * @param params.body.baseDisbursementAmount 本币支出
-     * @param params.body.baseReceiptAmount 本币收入
+     * @param params.body.baseDisbursementAmount 支出
+     * @param params.body.baseReceiptAmount 收入
      * @param params.body.bizDate 日期
      * @param params.body.cashJournalSrcEnum 日记账来源
-     * @param params.body.cashJournalSrcEnum.id id
-     * @param params.body.cashJournalSrcEnum.label 显示名
-     * @param params.body.cashJournalSrcEnum.value 枚举值
+     * @param params.body.cashJournalSrcEnum.id 文档未提供说明
+     * @param params.body.cashJournalSrcEnum.label 文档未提供说明
+     * @param params.body.cashJournalSrcEnum.value 文档未提供说明
      * @param params.body.comments 摘要
      * @param params.body.createdUserId 创建人
-     * @param params.body.createdUserId.id id
-     * @param params.body.createdUserId.name 姓名
-     * @param params.body.createdUserId.userName 用户名
-     * @param params.body.dateType 日期类型
+     * @param params.body.createdUserId.id 文档未提供说明
+     * @param params.body.createdUserId.name 文档未提供说明
+     * @param params.body.createdUserId.userName 文档未提供说明
+     * @param params.body.dateType 文档未提供说明
      * @param params.body.disbursementAmount 支出
-     * @param params.body.disbursementExchangeRate 支出汇率
+     * @param params.body.disbursementExchangeRate 文档未提供说明
      * @param params.body.glAccountId 科目id
      * @param params.body.glAccountPeriod 期间
      * @param params.body.id id
      * @param params.body.incomeDisbursementTypeId 收支类型id
-     * @param params.body.isAccountBookSameName 账套是否同名
+     * @param params.body.isAccountBookSameName 文档未提供说明
      * @param params.body.isBeginning 是否期初
      * @param params.body.isTotalRow 是否合计
-     * @param params.body.lastUpdatedUserId 最后修改人
-     * @param params.body.lastUpdatedUserId.id id
-     * @param params.body.lastUpdatedUserId.name 姓名
-     * @param params.body.lastUpdatedUserId.userName 用户名
-     * @param params.body.prev 上期
+     * @param params.body.lastUpdatedUserId 文档未提供说明
+     * @param params.body.lastUpdatedUserId.id 文档未提供说明
+     * @param params.body.lastUpdatedUserId.name 文档未提供说明
+     * @param params.body.lastUpdatedUserId.userName 文档未提供说明
+     * @param params.body.prev 文档未提供说明
      * @param params.body.receiptAmount 收入
-     * @param params.body.receiptExchangeRate 收入汇率
-     * @param params.body.refCashJournalEntryId 关联日记账ID
-     * @param params.body.selectionInvalid 选择是否失效
-     * @param params.body.sequenceNum 顺序号
-     * @param params.body.sequenceNumber 顺序号
-     * @param params.body.vCashBankStatementCheckStatus 银行对账状态
-     * @param params.body.hasJiezhang 是否结账
-     * @param params.body.uuid uuid
+     * @param params.body.receiptExchangeRate 文档未提供说明
+     * @param params.body.refCashJournalEntryId 文档未提供说明
+     * @param params.body.selectionInvalid 文档未提供说明
+     * @param params.body.sequenceNum 文档未提供说明
+     * @param params.body.sequenceNumber 文档未提供说明
+     * @param params.body.vCashBankStatementCheckStatus 文档未提供说明
+     * @param params.body.hasJiezhang 文档未提供说明
+     * @param params.body.uuid 文档未提供说明
      * @param params.body.editFlag 标志：update
      * @param params.body.periods 期间
      * @param params.body.rowNum 行号

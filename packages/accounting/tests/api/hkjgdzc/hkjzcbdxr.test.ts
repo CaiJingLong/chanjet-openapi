@@ -24,7 +24,7 @@ describe('createHkjzcbdxrApi', () => {
       path: '/accounting/asset/FixedAsset/outside/changeWrite/{bookid}',
       pathParams: { bookid: '123' },
       query: { propName: 'baseOriginalValue' },
-      body: ['{"modifiedValue":1}', '{"modifiedValue":2}'],
+      body: { jsonObject: ['{"modifiedValue":1}', '{"modifiedValue":2}'] },
     });
   });
 

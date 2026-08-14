@@ -242,7 +242,7 @@ export class ChanjetClient {
    * @param options.path 请求路径，含前导斜杠与 `{param}` 占位
    * @param options.pathParams 路径占位符替换值
    * @param options.query 查询参数，`undefined` / `null` 的键不参与序列化
-   * @param options.body 请求体（JSON 序列化），GET 请求忽略
+   * @param options.body 请求体（JSON 序列化），GET 请求亦携带（官方 getInvoiceInfo 等接口需要 GET+Body）
    * @returns 完整响应外壳
    * @throws {ChanjetApiError} HTTP 非 2xx、网络异常或超时
    * @throws {TypeError} 缺少 appKey/appSecret/openToken 或路径占位符无对应值
@@ -261,7 +261,7 @@ export class ChanjetClient {
         openToken,
       },
     };
-    if (options.body !== undefined && options.method !== 'GET') {
+    if (options.body !== undefined) {
       init.body = JSON.stringify(options.body);
     }
 

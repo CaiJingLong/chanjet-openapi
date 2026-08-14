@@ -50,7 +50,7 @@ export function createHkjzcbdxrApi(client: ChanjetClient) {
         path: '/accounting/asset/FixedAsset/outside/changeWrite/{bookid}',
         pathParams: { bookid: params.bookid },
         query: { propName: params.propName },
-        body: params.jsonObject,
+        body: { jsonObject: params.jsonObject },
       });
     },
   };

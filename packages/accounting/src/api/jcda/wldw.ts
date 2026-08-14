@@ -1,5 +1,5 @@
 /**
- * 来源: https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/wldw
+ * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/wldw
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/jcda/wldw.md
  *
@@ -465,7 +465,7 @@ export function createWldwApi(client: ChanjetClient) {
      * @param params.items[].custVendorContactList.telephone 手机号
      * @returns 同步成功的数据，键为系统生成的往来单位id、值为第三方同步过来的id
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/wldw
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/wldw
      */
     async batchUpsertApi(params: BatchUpsertApiParams): Promise<BatchUpsertApiResult> {
       return client.request<BatchUpsertApiResult>({
@@ -485,7 +485,7 @@ export function createWldwApi(client: ChanjetClient) {
      * @param params.id 此id是客户传递过来的id而不是系统生成的id
      * @returns 删除结果，`successResultMap` 为成功结果、`failResultMap` 为失败结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/wldw
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/wldw
      */
     async remove(params: RemoveParams): Promise<RemoveResult> {
       return client.request<RemoveResult>({
@@ -511,6 +511,18 @@ export function createWldwApi(client: ChanjetClient) {
      * @param params.items[].partyRoleTypeId 往来单位性质(客户:100001、供应商:100101、客户/供应商:100400)
      * @param params.items[].statusEnum 往来单位启用状态(启用:"A"，停用:"I")
      * @param params.items[].custVendorContactList 联系人列表
+     * @param params.items[].custVendorContactList[].contactName 客户名称
+     * @param params.items[].custVendorContactList[].email email
+     * @param params.items[].custVendorContactList[].qq qq
+     * @param params.items[].custVendorContactList[].fax 传真号
+     * @param params.items[].custVendorContactList[].wechat 微信号
+     * @param params.items[].custVendorContactList[].telephone 联系电话
+     * @param params.items[].custVendorContactList[].province 省/州
+     * @param params.items[].custVendorContactList[].city 城市
+     * @param params.items[].custVendorContactList[].disctrict 区/县
+     * @param params.items[].custVendorContactList[].address1 地址信息
+     * @param params.items[].custVendorContactList[].geoCode 邮编
+     * @param params.items[].custVendorContactList[].editFlag 操作类型，(未修改:"old",新增:"new",更新:"update",删除:delete)
      * @param params.items[].contactName 联系人名称
      * @param params.items[].sequenceNum 顺序号
      * @param params.items[].email 邮箱
@@ -545,6 +557,7 @@ export function createWldwApi(client: ChanjetClient) {
      * @param params.items[].arPrepaidAmount 预收金额
      * @param params.items[].billtoCustVendorId 结算单位(客户属性)
      * @param params.items[].custLabelList 客户标签列表
+     * @param params.items[].custLabelList[].label 客户标签-客户
      * @param params.items[].srcWebsiteEnum 来源平台
      * @param params.items[].legalRepresentative 企业法人
      * @param params.items[].openingBank 开户银行
@@ -552,7 +565,7 @@ export function createWldwApi(client: ChanjetClient) {
      * @param params.items[].taxNo 纳税人识别号
      * @returns 同步结果，`successResultMap` 为成功结果、`failResultMap` 为失败结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/wldw
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/wldw
      */
     async batchUpsert(params: BatchUpsertParams): Promise<BatchUpsertResult> {
       return client.request<BatchUpsertResult>({
@@ -575,7 +588,7 @@ export function createWldwApi(client: ChanjetClient) {
      * @param params.pageNo 当前页（默认：1）
      * @returns 往来单位分页结果，`rows` 为往来单位列表
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/wldw
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/wldw
      */
     async query(params: QueryParams): Promise<QueryResult> {
       return client.request<QueryResult>({
@@ -610,7 +623,7 @@ export function createWldwApi(client: ChanjetClient) {
      * @param params.custVendorContactList.comments 联系人备注
      * @returns 修改结果列表，每项包含编码、错误码与错误描述；常见错误码见 {@link UPDATE_CUSTVENDOR_ERRORS}
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/wldw
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/wldw
      */
     async update(params: UpdateParams): Promise<UpdateResult[]> {
       return client.request<UpdateResult[]>({

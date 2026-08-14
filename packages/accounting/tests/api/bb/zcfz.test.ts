@@ -8,7 +8,11 @@ function makeClient() {
     requests.push(options);
     return undefined as R;
   });
-  const client = { request } as unknown as ChanjetClient;
+  const requestEnvelope = vi.fn(async <R>(options: RequestOptions): Promise<R> => {
+    requests.push(options);
+    return undefined as R;
+  });
+  const client = { request, requestEnvelope } as unknown as ChanjetClient;
   return { client, requests };
 }
 

@@ -3,9 +3,17 @@
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/zjgl/hkjrjzjqcx.md
  *
- * 勘误/歧义注明:
+ * 勘误/冲突注明（参数表与示例类型不一致，均按参数表取值）:
  * - 文档「错误码说明」表为空（- | -），无错误码常量。
- * - 请求体字段类型冲突（均按参数表类型取值）：`code`（科目Code）表 string，示例 100101（number）。
+ * - 请求体 `code`（科目Code）：表 string，示例 100101（number）。
+ * - 请求体 `otherParam.receipt`：表 string，示例 1111（number）。
+ * - 请求体 `otherParam.disbursement`：表 string，示例 1111（number）。
+ * - 响应体 `sequenceNum`：表 string，示例 2（number）。
+ * - 响应体 `incomeDisbursementTypeId`：表 string，示例 1490882046853558（number）。
+ * - 响应体 `refCashJournalEntryId`：表 string，示例 0（number）。
+ * - 响应体 `glAccountId`：表 string，示例 1519907020996608（number）。
+ * - 响应体 `finAccountId`：表 string，示例 0（number）。
+ * - 响应体 `id`：表 string，示例 1499005159997440（number）。
  */
 
 import type { ChanjetClient } from '../../client.js';

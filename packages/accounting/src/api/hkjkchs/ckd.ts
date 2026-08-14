@@ -187,6 +187,7 @@ export interface StockOutUpdateParams {
   projectCode?: string;
   /** 业务类型ID 其他出库单 100213。入库方向：盘盈 100201 受赠 100202 其它 100203 组装 100208 拆卸 100209；出库方向：盘亏 100211 赠送 100212 调拨 100217 其它 100213 销售出库 100214 组装 100218 拆卸 100219 */
   bizTypeId: string;
+  /** 红蓝标志，值为RED或者BLUE */
   redBlueFlagEnum?: string;
   /** 仓库编码 */
   warehouseCode: string;
@@ -214,6 +215,7 @@ export interface StockOutAddParams {
   projectCode?: string;
   /** 业务类型ID 100213。入库方向：盘盈 100201 受赠 100202 其它 100203 组装 100208 拆卸 100209；出库方向：盘亏 100211 赠送 100212 调拨 100217 其它 100213 销售出库 100214 组装 100218 拆卸 100219 */
   bizTypeId: string;
+  /** 红蓝标志，值为RED或者BLUE */
   redBlueFlagEnum?: string;
   /** 仓库编码 */
   warehouseCode: string;

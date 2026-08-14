@@ -1,5 +1,5 @@
 /**
- * 来源: https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/jsfs
+ * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/jsfs
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/jcda/jsfs.md
  *
@@ -115,7 +115,7 @@ export function createJsfsApi(client: ChanjetClient) {
      * @param params.comments 备注
      * @returns 新增结果，`id` 为结算方式ID
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/jsfs
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/jsfs
      */
     async add(params: AddParams): Promise<AddResult> {
       return client.request<AddResult>({
@@ -139,7 +139,7 @@ export function createJsfsApi(client: ChanjetClient) {
      * @param params.codes 结算方式编码列表
      * @returns 删除结果，`success` 为成功编码、`fail` 为失败编码
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/jsfs
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/jsfs
      */
     async remove(params: RemoveParams): Promise<RemoveResult> {
       return client.request<RemoveResult>({
@@ -161,7 +161,7 @@ export function createJsfsApi(client: ChanjetClient) {
      * @param params.externalId 第三方ID
      * @returns 修改结果，`code` 为结算方式编码
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/jsfs
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/jsfs
      */
     async update(params: UpdateParams): Promise<UpdateResult> {
       return client.request<UpdateResult>({
@@ -185,7 +185,7 @@ export function createJsfsApi(client: ChanjetClient) {
      * @param params.code 结算方式编码
      * @returns 结算方式详情
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/jsfs
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/jsfs
      */
     async query(params: QueryParams): Promise<QueryResult> {
       return client.request<QueryResult>({

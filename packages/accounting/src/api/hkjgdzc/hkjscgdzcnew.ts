@@ -15,7 +15,13 @@ export interface DeleteFixedAssetParams {
   ids: string[];
 }
 
-/** （外部接口-新版资产）删除固定资产 - 响应 data 字段 */
+/**
+ * （外部接口-新版资产）删除固定资产 - 响应 data 字段。
+ *
+ * 冲突注明：文档参数表定义了 data 子字段（deleteFailReason/deleteSuccessNum/isShowFlag），
+ * 但响应示例仅返回 { "code": "000000", "successful": true }，无 data 字段。
+ * 按参数表建模，实际响应可能不含 data。
+ */
 export interface DeleteFixedAssetResult {
   /** 删除失败原因 */
   deleteFailReason?: string;

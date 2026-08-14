@@ -1,5 +1,5 @@
 /**
- * 来源: https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/jldw
+ * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/jldw
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/jcda/jldw.md
  *
@@ -107,7 +107,7 @@ export function createJldwApi(client: ChanjetClient) {
      * @param params.id 计量单位ID
      * @returns 删除结果，`successResultMap` 为成功结果、`failResultMap` 为失败结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/jldw
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/jldw
      */
     async remove(params: RemoveParams): Promise<RemoveResult> {
       return client.request<RemoveResult>({
@@ -129,7 +129,7 @@ export function createJldwApi(client: ChanjetClient) {
      * @param params.items[].statusEnum 状态（A：启用、B：停用）
      * @returns 同步结果，`successResultMap` 为成功结果、`failResultMap` 为失败结果
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/jldw
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/jldw
      */
     async batchUpsert(params: BatchUpsertParams): Promise<BatchUpsertResult> {
       return client.request<BatchUpsertResult>({
@@ -147,7 +147,7 @@ export function createJldwApi(client: ChanjetClient) {
      * @param params.bookid 账套id
      * @returns 币种列表
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
-     * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/jldw
+     * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/jcda/jldw
      */
     async queryAllCurrency(params: QueryAllCurrencyParams): Promise<QueryAllCurrencyResult[]> {
       return client.request<QueryAllCurrencyResult[]>({

@@ -2,6 +2,18 @@
  * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/hkjgdzc/hkjcxzclb
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/hkjgdzc/hkjcxzclb.md
+ *
+ * 冲突注明：以下响应字段文档参数表标注为 string，但响应示例中为 number。
+ * 按参数表以 string 建模，实际返回可能为 number：
+ * - aggregators.baseCurrentDepnAmount（示例 12.88）
+ * - aggregators.baseLastDepnAmount（示例 1265）
+ * - aggregators.baseOpenningDepnAmount（示例 1252.12）
+ * - aggregators.baseOriginalAmount（示例 2450）
+ * - aggregators.netWorth（示例 1185）
+ * - aggregators.quantity（示例 1）
+ * - data[].baseOriginalAmount（示例 2450）
+ * - data[].baseCurrentDepnAmount（示例 12.88）
+ * - data[].baseOpenningDepnAmount（示例 1252.12）
  */
 import type { ChanjetClient } from '../../client.js';
 
