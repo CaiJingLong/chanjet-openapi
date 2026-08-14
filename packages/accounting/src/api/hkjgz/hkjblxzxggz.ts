@@ -2,6 +2,8 @@
  * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/hkjgz/hkjblxzxggz
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/hkjgz/hkjblxzxggz.md
+ *
+ * 文档无错误码说明章节，故本模块无错误码常量。
  */
 
 import type { ChanjetClient, RequestOptions } from '../../client.js';
@@ -166,6 +168,13 @@ export interface AddBatchEmployeeResult {
   totalTaxableIncome?: string;
   /** 强制覆盖员工信息标志 */
   updateEmployeeFlag?: boolean;
+  /** 扩展信息（输出参数表未列，仅出现在响应示例中） */
+  extInfo?: {
+    /** 是否成功 */
+    success?: boolean;
+    /** 错误信息 */
+    errorMsg?: string;
+  };
 }
 
 /**

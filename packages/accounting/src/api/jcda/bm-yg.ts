@@ -2,6 +2,8 @@
  * 来源: https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/bm-yg
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/jcda/bm-yg.md
+ *
+ * 错误码说明：syncDepartment/removeDepartment/queryDepartment/syncEmployee/removeEmployee/queryEmployee 无错误码说明表，batchUpsertEmployee/getDepartment/getEmployee 错误码说明表为空，故无错误码常量。
  */
 import type { ChanjetClient } from '../../client.js';
 
@@ -142,7 +144,7 @@ export interface RemoveEmployeeParams {
   bookid: string;
   /** 删除时间 */
   removeTime: string;
-  /** 员工ID */
+  /** 员工ID（文档参数表未列出 id，但请求示例 body 含 id） */
   id: number;
 }
 
@@ -222,7 +224,7 @@ export interface BatchUpsertEmployeeParamsItem {
   departmentId: number;
   /** 入职时间 */
   employtime: string;
-  /** 离职时间 */
+  /** 离职时间（文档参数表必填=是，但示例中被注释掉，以参数表为准） */
   leavetime: string;
 }
 

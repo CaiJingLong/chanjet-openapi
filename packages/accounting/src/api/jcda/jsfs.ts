@@ -2,6 +2,8 @@
  * 来源: https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/jsfs
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/jcda/jsfs.md
+ *
+ * 文档各接口错误码说明表为空或未提供，故无错误码常量。
  */
 import type { ChanjetClient } from '../../client.js';
 

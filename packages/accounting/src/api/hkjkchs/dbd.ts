@@ -2,6 +2,7 @@
  * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/hkjkchs/dbd
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/hkjkchs/dbd.md
+ * 注意: 文档接口均未提供错误码说明表，故无错误码常量。
  */
 
 import type { ChanjetClient, RequestOptions } from '../../client.js';
@@ -182,9 +183,9 @@ export interface StockTransferListParams {
   startDate?: string;
   /** 结束时间 */
   endDate?: string;
-  /** 单据编号 */
+  /** 单据编号（参数表为 string，示例为数组，以参数表为准） */
   voucherCode?: string;
-  /** 外部单据编号 */
+  /** 外部单据编号（参数表为 string，示例为数组，以参数表为准） */
   voucherExternalCode?: string;
   /** 单据方向 */
   redBlueFlagEnum?: string;
@@ -192,7 +193,7 @@ export interface StockTransferListParams {
   voucherStatusEnum?: string;
   /** 页数 */
   page: number;
-  /** 页行数 */
+  /** 页行数（参数表为 string，示例为数字，以参数表为准） */
   pageSize: string;
 }
 

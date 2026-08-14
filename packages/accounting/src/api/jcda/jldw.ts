@@ -2,6 +2,8 @@
  * 来源: https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/jldw
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/jcda/jldw.md
+ *
+ * 文档各接口错误码说明表为空或未提供，故无错误码常量。
  */
 import type { ChanjetClient } from '../../client.js';
 
@@ -95,6 +97,9 @@ export function createJldwApi(client: ChanjetClient) {
   return {
     /**
      * 同步删除计量单位。
+     *
+     * 注意：文档参数表将 removeTime 列在 Path 下，但示例 URL 为 query string，
+     * 本实现按示例放在 query，与参数表存在冲突。
      *
      * @param params 请求参数
      * @param params.bookid 账套id

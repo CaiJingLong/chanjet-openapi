@@ -2,6 +2,7 @@
  * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/hkjkchs/zzcxd
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/hkjkchs/zzcxd.md
+ * 注意: 文档未提供错误码说明表，故无错误码常量。
  */
 
 import type { ChanjetClient, RequestOptions } from '../../client.js';
@@ -70,19 +71,19 @@ export interface AssemblyChildProduct {
   productCode: string;
   /** 仓库编码 */
   warehouseCode: string;
-  /** 采购单位 */
+  /** 文档未提供说明 */
   transUomName: string;
-  /** 数量 */
+  /** 文档未提供说明 */
   transQty?: string;
-  /** 单位2 */
+  /** 文档未提供说明 */
   trans2UomName?: string;
-  /** 数量2 */
+  /** 文档未提供说明 */
   trans2Qty?: string;
-  /** 包装数量 */
+  /** 文档未提供说明 */
   hierarchyPkgQtysText?: string;
-  /** 单价 */
+  /** 文档未提供说明 */
   costPrice: string;
-  /** 金额 */
+  /** 文档未提供说明 */
   costAmount: string;
   /** 父id，该值和parentList里的fatherId保持一致 */
   fatherId: string;
@@ -90,12 +91,14 @@ export interface AssemblyChildProduct {
   projectCode?: string;
   /** 合同编码 */
   contractNo?: string;
-  /** 货位明细信息 */
+  /** 文档未提供说明 */
   wareLocationDetailList?: AssemblyWareLocationDetail[];
 }
 
 /** 组装拆卸单父件（修改） */
 export interface AssemblyUpdateParentProduct {
+  /** 文档参数表无 id，但请求示例包含 id */
+  id?: string;
   /** 商品编码 */
   productCode: string;
   /** 调出仓库编码 */
@@ -138,23 +141,25 @@ export interface AssemblyUpdateParentProduct {
 
 /** 组装拆卸单子件（修改） */
 export interface AssemblyUpdateChildProduct {
+  /** 文档参数表无 id，但请求示例包含 id */
+  id?: string;
   /** 商品编码 */
   productCode: string;
   /** 仓库编码 */
   warehouseCode: string;
-  /** 采购单位 */
+  /** 文档未提供说明 */
   transUomName: string;
-  /** 数量 */
+  /** 文档未提供说明 */
   transQty?: string;
-  /** 单位2 */
+  /** 文档未提供说明 */
   trans2UomName?: string;
-  /** 数量2 */
+  /** 文档未提供说明 */
   trans2Qty?: string;
-  /** 包装数量 */
+  /** 文档未提供说明 */
   hierarchyPkgQtysText?: string;
-  /** 单价 */
+  /** 文档未提供说明 */
   costPrice?: string;
-  /** 金额 */
+  /** 文档未提供说明 */
   costAmount?: string;
   /** 父id，该值和parentList里的fatherId保持一致 */
   fatherId: string;
@@ -174,15 +179,15 @@ export interface AssemblyListParams {
   startDate?: string;
   /** 结束时间 */
   endDate?: string;
-  /** 单据编号 */
+  /** 单据编号（参数表为 string，示例为数组，以参数表为准） */
   voucherCode?: string;
-  /** 外部单据编号 */
+  /** 外部单据编号（参数表为 string，示例为数组，以参数表为准） */
   voucherExternalCode?: string;
   /** 单据状态： SUBMITTED 未生效 EFFECTIVE 已生效 */
   voucherStatusEnum?: string;
   /** 页数 */
   page: number;
-  /** 页行数 */
+  /** 页行数（参数表为 string，示例为数字，以参数表为准） */
   pageSize: string;
 }
 
@@ -210,12 +215,14 @@ export interface AssemblyUpdateParams {
   bizEmployeeCode?: string;
   /** 备注 */
   comments?: string;
-  /** 自定义项 */
+  /** 自定义项（参数表为 customizedField，示例为 customizedFieldList，以参数表为准） */
   customizedField?: AssemblyCustomizedField[];
   /** 父件列表 */
   parentProductList: AssemblyUpdateParentProduct[];
   /** 子件列表 */
   childProductList: AssemblyUpdateChildProduct[];
+  /** 文档参数表无 id，但请求示例包含顶层 id */
+  id?: string;
 }
 
 /** 组装拆卸单新增请求参数 */
@@ -242,7 +249,7 @@ export interface AssemblyAddParams {
   bizEmployeeCode?: string;
   /** 备注 */
   comments?: string;
-  /** 自定义项 */
+  /** 自定义项（参数表为 customizedField，示例为 customizedFieldList，以参数表为准） */
   customizedField?: AssemblyCustomizedField[];
   /** 父件列表 */
   parentProductList: AssemblyParentProduct[];
@@ -447,13 +454,13 @@ export function createZzcxdApi(client: ChanjetClient) {
      * @param params.childProductList 子件列表，必填
      * @param params.childProductList[].productCode 商品编码
      * @param params.childProductList[].warehouseCode 仓库编码
-     * @param params.childProductList[].transUomName 采购单位
-     * @param params.childProductList[].transQty 数量
-     * @param params.childProductList[].trans2UomName 单位2
-     * @param params.childProductList[].trans2Qty 数量2
-     * @param params.childProductList[].hierarchyPkgQtysText 包装数量
-     * @param params.childProductList[].costPrice 单价
-     * @param params.childProductList[].costAmount 金额
+     * @param params.childProductList[].transUomName 文档未提供说明
+     * @param params.childProductList[].transQty 文档未提供说明
+     * @param params.childProductList[].trans2UomName 文档未提供说明
+     * @param params.childProductList[].trans2Qty 文档未提供说明
+     * @param params.childProductList[].hierarchyPkgQtysText 文档未提供说明
+     * @param params.childProductList[].costPrice 文档未提供说明
+     * @param params.childProductList[].costAmount 文档未提供说明
      * @param params.childProductList[].fatherId 父id，该值和parentList里的fatherId保持一致
      * @param params.childProductList[].projectCode 项目编码
      * @param params.childProductList[].contractNo 合同编号
@@ -514,17 +521,17 @@ export function createZzcxdApi(client: ChanjetClient) {
      * @param params.childProductList 子件列表，必填
      * @param params.childProductList[].productCode 商品编码
      * @param params.childProductList[].warehouseCode 仓库编码
-     * @param params.childProductList[].transUomName 采购单位
-     * @param params.childProductList[].transQty 数量
-     * @param params.childProductList[].trans2UomName 单位2
-     * @param params.childProductList[].trans2Qty 数量2
-     * @param params.childProductList[].hierarchyPkgQtysText 包装数量
-     * @param params.childProductList[].costPrice 单价
-     * @param params.childProductList[].costAmount 金额
+     * @param params.childProductList[].transUomName 文档未提供说明
+     * @param params.childProductList[].transQty 文档未提供说明
+     * @param params.childProductList[].trans2UomName 文档未提供说明
+     * @param params.childProductList[].trans2Qty 文档未提供说明
+     * @param params.childProductList[].hierarchyPkgQtysText 文档未提供说明
+     * @param params.childProductList[].costPrice 文档未提供说明
+     * @param params.childProductList[].costAmount 文档未提供说明
      * @param params.childProductList[].fatherId 父id，该值和parentList里的fatherId保持一致
      * @param params.childProductList[].projectCode 项目编码
      * @param params.childProductList[].contractNo 合同编码
-     * @param params.childProductList[].wareLocationDetailList 货位明细信息
+     * @param params.childProductList[].wareLocationDetailList 文档未提供说明
      * @returns 新增结果，`id` 为组装拆卸单ID
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
      * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/hkjkchs/zzcxd

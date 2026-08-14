@@ -62,20 +62,18 @@ export interface CheckOutPeriodResult {
  * 财务月结操作日志查询条件子项。
  *
  * 官方参数表将 `from`、`to` 标记为必填，但请求示例中 `type=value` 的子项仅含 `value`
- * 而无 `from`/`to`；同时 `value` 未出现在参数表、仅出现在请求示例。故将 `from`/`to`/`value`
- * 均定义为可选，按 `type` 取值使用：`type=between` 用 `from`/`to`，`type=value` 用 `value`。
+ * 而无 `from`/`to`。按「参数表与示例冲突时以参数表为准」规则，`from`/`to` 定义为必填。
+ * `value` 未出现在参数表中，故不收录。
  */
 export interface QueryLogParam {
   /** 字段名称 */
   name: string;
-  /** 开始时间（type=between 时使用） */
-  from?: string;
-  /** 结束时间（type=between 时使用） */
-  to?: string;
+  /** 开始时间 */
+  from: string;
+  /** 结束时间 */
+  to: string;
   /** 类型：between（区间）或 value（值） */
   type: string;
-  /** 值（type=value 时使用；官方参数表未列，取自请求示例） */
-  value?: string;
 }
 
 /**
@@ -185,10 +183,9 @@ export function createHkjjzApi(client: ChanjetClient) {
      * @param params.pageSize 数量，请求体字段，必填
      * @param params.params 入参，请求体字段，必填
      * @param params.params[].name 字段名称
-     * @param params.params[].from 开始时间（type=between 时使用）
-     * @param params.params[].to 结束时间（type=between 时使用）
+     * @param params.params[].from 开始时间，必填
+     * @param params.params[].to 结束时间，必填
      * @param params.params[].type 类型：between（区间）或 value（值）
-     * @param params.params[].value 值（type=value 时使用）
      * @returns 财务月结操作日志，`data` 为日志数组、`total` 为返回数量
      * @throws {ChanjetApiError} 远端返回网络异常或签名失败
      * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/hkjjz/hkjjz

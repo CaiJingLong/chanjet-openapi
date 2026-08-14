@@ -60,7 +60,8 @@ export interface DisableCategoryParams {
   bookid: string;
   /** 凭证类别id：100001 记账凭证 / 100002 收款凭证 / 100003 付款凭证 / 100004 现金收款凭证 /
    * 100005 现金付款凭证 / 100006 银行收款凭证 / 100007 银行付款凭证 / 100008 现金凭证 /
-   * 100009 银行凭证 / 100010 转账凭证。查询参数（请求示例 ?id=），必填 */
+   * 100009 银行凭证 / 100010 转账凭证。请求体参数（参数表列于 Body 下），必填。
+   * 注：请求示例为 ?id=100004（query 参数），与参数表冲突，此处以参数表为准。 */
   id: string;
 }
 
@@ -74,7 +75,9 @@ export interface UpdatePayRollSettingsParams {
 export interface EnableCategoryParams {
   /** 账套id，路径参数，必填 */
   bookid: string;
-  /** 类别id（100001..100010，含义同禁用凭证类别），查询参数（请求示例 ?id=），可选 */
+  /** 类别id（100001..100010，含义同禁用凭证类别），查询参数（请求示例 ?id=），可选。
+   * 注：文档内部冲突——路径参数表标注 id 为 string/可选，请求体表标注 id 为 integer/必填，
+   * 此处以路径参数表为准（string/可选）。 */
   id?: string;
 }
 
@@ -82,6 +85,7 @@ export interface EnableCategoryParams {
 export const PZPZ_ERROR_CODES = {
   GL_E9004: { code: 'gl.e9004', message: '不能禁用已经使用的凭证类型' },
   GL_E0001: { code: 'gl.e0001', message: '' },
+  INTERNAL_ERROR: { code: '500', message: '500' },
 } as const;
 
 export function createPzpzApi(client: ChanjetClient) {
@@ -165,7 +169,7 @@ export function createPzpzApi(client: ChanjetClient) {
      *
      * @param params 请求参数
      * @param params.bookid 账套id，路径参数，必填
-     * @param params.id 凭证类别id（100001..100010），查询参数，必填
+     * @param params.id 凭证类别id（100001..100010），请求体参数，必填（注：请求示例为 query 参数，与参数表冲突，以参数表为准）
      * @returns 成功无返回
      * @throws {ChanjetApiError} 远端返回业务错误（gl.e9004 不能禁用已经使用的凭证类型）、网络异常或签名失败
      * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/sz/pzpz
@@ -175,7 +179,7 @@ export function createPzpzApi(client: ChanjetClient) {
         method: 'POST',
         path: '/accounting/gl/acctgTransCategory/disableCategory/{bookid}',
         pathParams: { bookid: params.bookid },
-        query: { id: params.id },
+        body: { id: params.id },
       });
     },
 

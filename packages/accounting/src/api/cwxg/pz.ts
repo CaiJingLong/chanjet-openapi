@@ -79,7 +79,7 @@ export interface GetInitBalanceListResult {
   glAccountId?: number;
   /** 科目名称 */
   glAccountName?: string;
-  /** 是否有辅助核算（文档未给说明） */
+  /** 文档未提供说明 */
   hasAssistantDetail?: string;
   /** 是否外币核算 */
   hasForeignCurrency?: string;
@@ -277,7 +277,7 @@ export interface AcctgTransFuzzySearchParams {
 export interface AcctgTransFuzzySearchResult {
   /** 总数 */
   totalCount?: string;
-  /** 返回结果集 */
+  /** 返回结果集（参数表类型为 array<string>，但响应示例为对象数组，以示例为准） */
   result?: AcctgTransFuzzySearchResultItem[];
   /** 页码（响应示例出现，文档输出参数表未列） */
   pageCount?: number;
@@ -307,11 +307,11 @@ export interface AcctgTransFuzzySearchResultItem {
   createdStamp?: string;
   /** 附件数 */
   attachementCount?: string;
-  /** 来源单据 */
+  /** 凭证日期 */
   refBoName?: string;
   /** 凭证日期（文档原文如此；依语义当为备注） */
   comments?: string;
-  /** 凭证类别 */
+  /** 凭证类别（参数表类型为 string，但响应示例为对象 {name, id, longName}，以示例为准） */
   acctgTransCategoryId?: AcctgTransFuzzySearchResultItemAcctgTransCategoryId;
   /** 创建人 */
   createdUserId?: unknown;
@@ -319,7 +319,7 @@ export interface AcctgTransFuzzySearchResultItem {
   cancelUserId?: unknown;
   /** 凭证所属人 */
   ownerUserId?: unknown;
-  /** 凭证明细集合 */
+  /** 凭证明细集合（参数表类型为 array<string>，但响应示例为对象数组，以示例为准） */
   details?: AcctgTransFuzzySearchResultItemDetail[];
   /** 云审批任务id */
   bpmTaskId?: string;
@@ -601,7 +601,7 @@ export interface AcctgTransExactSearchParams {
 export interface AcctgTransExactSearchResult {
   /** 总数 */
   totalCount?: number;
-  /** 返回结果集 */
+  /** 返回结果集（参数表类型为 array<string>，但响应示例为对象数组，以示例为准） */
   result?: AcctgTransExactSearchResultItem[];
   /** 页码（响应示例出现，文档输出参数表未列） */
   pageCount?: number;
@@ -635,7 +635,7 @@ export interface AcctgTransExactSearchResultItem {
   refBoName?: string;
   /** 备注 */
   comments?: string;
-  /** 凭证类型 */
+  /** 凭证类型（参数表类型为 string，但响应示例中为对象 {name, id, longName}，此处以参数表为准，name/longName 作为顶层字段） */
   acctgTransCategoryId?: string;
   /** 凭证类型名称 */
   name?: string;
@@ -647,7 +647,7 @@ export interface AcctgTransExactSearchResultItem {
   cancelUserId?: unknown;
   /** 凭证所属人 */
   ownerUserId?: unknown;
-  /** 凭证明细集合 */
+  /** 凭证明细集合（参数表类型为 array<string>，但响应示例为对象数组，以示例为准） */
   details?: AcctgTransExactSearchResultItemDetail[];
   /** 云审批任务id */
   bpmTaskId?: string;

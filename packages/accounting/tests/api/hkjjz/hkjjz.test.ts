@@ -128,7 +128,7 @@ describe('createHkjjzApi', () => {
       });
     });
 
-    it('type=value 时 from/to 缺省且携带 value', async () => {
+    it('type=value 时仍需携带必填 from/to（参数表为准）', async () => {
       const { client, requestEnvelope } = setup();
       requestEnvelope.mockResolvedValue({ total: 0, data: [] });
       const api = createHkjjzApi(client);
@@ -137,7 +137,7 @@ describe('createHkjjzApi', () => {
         bookid: '123',
         page: 1,
         pageSize: 100,
-        params: [{ name: 'resourceId', value: '1855', type: 'value' }],
+        params: [{ name: 'resourceId', from: '1681920000000', to: '1681920000000', type: 'value' }],
       });
 
       expect(requestEnvelope).toHaveBeenCalledWith(
@@ -145,7 +145,9 @@ describe('createHkjjzApi', () => {
           body: {
             page: 1,
             pageSize: 100,
-            params: [{ name: 'resourceId', value: '1855', type: 'value' }],
+            params: [
+              { name: 'resourceId', from: '1681920000000', to: '1681920000000', type: 'value' },
+            ],
           },
         }),
       );

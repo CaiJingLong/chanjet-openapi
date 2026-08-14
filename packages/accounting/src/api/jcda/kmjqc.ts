@@ -2,6 +2,8 @@
  * 来源: https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/kmjqc
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/jcda/kmjqc.md
+ *
+ * 错误码说明：多数接口错误码说明表为空或未提供；getInitBalanceLists 接口错误码见 GET_INIT_BALANCE_LISTS_ERRORS 常量。
  */
 import type { ChanjetClient } from '../../client.js';
 
@@ -23,8 +25,8 @@ export interface GetInitBalanceListResult {
   acctgSystemId?: number;
   /** 别名 */
   aliasName?: string;
-  /** 辅助项信息 */
-  assistantTypes?: unknown[];
+  /** 辅助项信息（文档类型为 object，以参数表为准） */
+  assistantTypes?: Record<string, unknown>;
   /** 期末余额：本币 */
   baseEndingBalance?: string;
   /** 期初余额：本币 */
@@ -220,8 +222,8 @@ export interface GetInitBalanceListsResult {
   baseEndingBalance?: string;
   /** 是否有辅助核算 */
   isAssistantAccount?: boolean;
-  /** 辅助核算 */
-  assistantTypes?: GetInitBalanceListsResultAssistantType[];
+  /** 辅助核算（文档类型为 object，以参数表为准） */
+  assistantTypes?: GetInitBalanceListsResultAssistantType;
   /** 客户号 */
   customerNo?: string;
   /** 树形路径，用20位code通过中划线连接，code不足20位在左侧补零 */
@@ -684,6 +686,8 @@ export interface AddAssistaccountingToJSONObjectParamsSubAccountBalanceGlSubAcco
 
 /**
  * 更新科目辅助余额-json入参返回结果（键为入参索引，值为科目辅助余额表id）。
+ *
+ * 注意：文档输出参数表为 id|string，但响应示例为 map，以响应示例为准。
  */
 export type AddAssistaccountingToJSONObjectResult = Record<string, number>;
 
@@ -891,6 +895,8 @@ export function createKmjqcApi(client: ChanjetClient) {
 
     /**
      * （外部接口）更新科目辅助余额。
+     *
+     * 注意：文档请求示例为数组 `[{...}]`，但参数表为单对象，以参数表为准。
      *
      * @param params 请求参数
      * @param params.bookid 账套id

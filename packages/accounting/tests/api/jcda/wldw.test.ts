@@ -102,7 +102,7 @@ describe('createWldwApi', () => {
       code: 'api-custvendor006',
       partyRoleTypeId: { id: '100101' },
       partyCategory: { code: '00' },
-      custVendorContactList: [{ contactName: '任青彬-修改', address1: '北京市' }],
+      custVendorContactList: { contactName: '任青彬-修改', address1: '北京市' },
     });
 
     expect(request).toHaveBeenCalledWith({
@@ -113,7 +113,7 @@ describe('createWldwApi', () => {
         code: 'api-custvendor006',
         partyRoleTypeId: { id: '100101' },
         partyCategory: { code: '00' },
-        custVendorContactList: [{ contactName: '任青彬-修改', address1: '北京市' }],
+        custVendorContactList: { contactName: '任青彬-修改', address1: '北京市' },
       },
     });
   });
@@ -130,6 +130,7 @@ describe('createWldwApi', () => {
         code: 'c',
         partyRoleTypeId: { id: '100001' },
         partyCategory: {},
+        custVendorContactList: { contactName: 'test' },
       }),
     ).rejects.toBe(err);
   });

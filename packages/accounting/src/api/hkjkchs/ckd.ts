@@ -2,6 +2,7 @@
  * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/hkjkchs/ckd
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/hkjkchs/ckd.md
+ * 注意: 文档五个接口均未提供错误码说明表，故无错误码常量。
  */
 
 import type { ChanjetClient, RequestOptions } from '../../client.js';
@@ -12,6 +13,14 @@ export interface StockOutCustomizedField {
   name: string;
   /** 自定义项值 */
   value: string;
+}
+
+/** 其他出入库单V2明细自定义项（name/value 为可选，与新增/修改接口的 customizedField 必填性不同） */
+export interface StockOutV2CustomizedField {
+  /** 文档未提供说明 */
+  name?: string;
+  /** 文档未提供说明 */
+  value?: string;
 }
 
 /** 其他出库单货位明细（新增） */
@@ -37,9 +46,9 @@ export interface StockOutUpdateWareLocationDetail {
 /** 其他出库单商品属性 */
 export interface StockOutProductSpec {
   /** 属性名称（属性档案中存在） */
-  name?: string;
+  name: string;
   /** 属性值（属性档案中存在） */
-  value?: string;
+  value: string;
 }
 
 /** 其他出库单修改序列号明细 */
@@ -154,15 +163,15 @@ export interface StockOutListParams {
   startDate?: string;
   /** 结束时间 */
   endDate?: string;
-  /** 单据编号 */
+  /** 单据编号（参数表为 string，示例为数组，以参数表为准） */
   voucherCode?: string;
-  /** 外部单据编号 */
+  /** 外部单据编号（参数表为 string，示例为数组，以参数表为准） */
   voucherExternalCode?: string;
   /** 单据状态： SUBMITTED 未生效 EFFECTIVE 已生效 */
   voucherStatusEnum?: string;
   /** 页数 */
   page: number;
-  /** 页行数 */
+  /** 页行数（参数表为 string，示例为数字，以参数表为准） */
   pageSize: string;
 }
 
@@ -176,9 +185,8 @@ export interface StockOutUpdateParams {
   code: string;
   /** 项目编码 */
   projectCode?: string;
-  /** 业务类型ID 其他出库单 100213 */
+  /** 业务类型ID 其他出库单 100213。入库方向：盘盈 100201 受赠 100202 其它 100203 组装 100208 拆卸 100209；出库方向：盘亏 100211 赠送 100212 调拨 100217 其它 100213 销售出库 100214 组装 100218 拆卸 100219 */
   bizTypeId: string;
-  /** 红蓝标志，值为RED或者BLUE */
   redBlueFlagEnum?: string;
   /** 仓库编码 */
   warehouseCode: string;
@@ -204,9 +212,8 @@ export interface StockOutAddParams {
   code: string;
   /** 项目编码 */
   projectCode?: string;
-  /** 业务类型ID 100213 */
+  /** 业务类型ID 100213。入库方向：盘盈 100201 受赠 100202 其它 100203 组装 100208 拆卸 100209；出库方向：盘亏 100211 赠送 100212 调拨 100217 其它 100213 销售出库 100214 组装 100218 拆卸 100219 */
   bizTypeId: string;
-  /** 红蓝标志，值为RED或者BLUE */
   redBlueFlagEnum?: string;
   /** 仓库编码 */
   warehouseCode: string;
@@ -238,7 +245,7 @@ export interface StockOutV2AddParams {
   code: string;
   /** 项目编码 */
   projectCode?: string;
-  /** 业务类型ID */
+  /** 业务类型ID。入库方向：盘盈 100201 受赠 100202 其它 100203 组装 100208 拆卸 100209；出库方向：盘亏 100211 赠送 100212 调拨 100217 其它 100213 销售出库 100214 组装 100218 拆卸 100219 */
   bizTypeId: string;
   /** 红蓝标志，值为RED或者BLUE */
   redBlueFlagEnum?: string;
@@ -298,8 +305,8 @@ export interface StockOutV2Detail {
   contractNo?: string;
   /** 手工指定成本 */
   isManualCostPrice?: boolean;
-  /** 明细自定义项 */
-  customizedField?: StockOutCustomizedField[];
+  /** 明细自定义项（V2 接口子项 name/value 为可选，与新增/修改接口的 customizedField 必填性不同） */
+  customizedField?: StockOutV2CustomizedField[];
   /** 货位明细信息 */
   wareLocationDetailList?: StockOutWareLocationDetail[];
   /** 序列号 */

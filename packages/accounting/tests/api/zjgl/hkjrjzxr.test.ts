@@ -20,7 +20,7 @@ describe('createHkjrjzxrApi', () => {
       method: 'POST',
       path: '/accounting/acctgplt/CashJournal/outside/journalWrite/{bookid}',
       pathParams: { bookid: 'bk1' },
-      body: jsonObject,
+      body: { jsonObject },
     });
   });
 

@@ -1,3 +1,8 @@
+/**
+ * 来源: packages/accounting/CONTRACT.md（共享契约，主 agent 定稿）
+ * 官方文档: 接口鉴权指南 https://open.chanjet.com/md/docs/file/guide/commonContent/jcwd-sfyz/sfyz-jrzy
+ * 本地快照: .cache/docs/guide-sfyz-jrzy.md
+ */
 import { ChanjetApiError } from './errors.js';
 import type { ApiEnvelope } from './types.js';
 

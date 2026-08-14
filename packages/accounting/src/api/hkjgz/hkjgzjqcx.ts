@@ -72,6 +72,16 @@ export interface GetPayrollListResult {
   persHeathcareIns?: string;
   /** 报送状态 */
   sbzt?: string;
+  /** 身份证类型（输出参数表未列，仅出现在响应示例中） */
+  identificationType?: string;
+  /** 津贴（输出参数表未列，仅出现在响应示例中） */
+  jt?: string;
+  /** 绩效（输出参数表未列，仅出现在响应示例中） */
+  jx?: string;
+  /** 部门（输出参数表未列，仅出现在响应示例中） */
+  department?: string;
+  /** 扣款（输出参数表未列，仅出现在响应示例中） */
+  kk?: string;
 }
 
 /**

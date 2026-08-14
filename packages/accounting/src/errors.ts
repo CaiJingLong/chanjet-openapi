@@ -1,3 +1,6 @@
+/**
+ * 来源: packages/accounting/CONTRACT.md（共享契约，主 agent 定稿）
+ */
 import type { ApiEnvelope } from './types.js';
 
 /** ChanjetApiError 构造入参 */

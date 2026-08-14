@@ -3,14 +3,17 @@ import type { ChanjetClient } from '../../../src/client.js';
 import { createHkjcxzclbApi } from '../../../src/api/hkjgdzc/hkjcxzclb.js';
 
 function makeMockClient() {
-  const request = vi.fn();
-  return { client: { request } as unknown as ChanjetClient, request };
+  const requestEnvelope = vi.fn();
+  return {
+    client: { requestEnvelope } as unknown as ChanjetClient,
+    requestEnvelope,
+  };
 }
 
 describe('createHkjcxzclbApi', () => {
   it('映射路径参数与请求体', async () => {
-    const { client, request } = makeMockClient();
-    request.mockResolvedValue([]);
+    const { client, requestEnvelope } = makeMockClient();
+    requestEnvelope.mockResolvedValue({ data: [] });
 
     const api = createHkjcxzclbApi(client);
     await api.queryFixedAsset({
@@ -22,7 +25,7 @@ describe('createHkjcxzclbApi', () => {
       period: '202401',
     });
 
-    expect(request).toHaveBeenCalledWith({
+    expect(requestEnvelope).toHaveBeenCalledWith({
       method: 'POST',
       path: '/accounting/asset/fixedAssetRestructure/queryFixedAsset/{bookid}',
       pathParams: { bookid: '123' },
@@ -37,8 +40,8 @@ describe('createHkjcxzclbApi', () => {
   });
 
   it('可选参数 keyWords 缺省时为 undefined', async () => {
-    const { client, request } = makeMockClient();
-    request.mockResolvedValue([]);
+    const { client, requestEnvelope } = makeMockClient();
+    requestEnvelope.mockResolvedValue({ data: [] });
 
     const api = createHkjcxzclbApi(client);
     await api.queryFixedAsset({
@@ -49,14 +52,14 @@ describe('createHkjcxzclbApi', () => {
       period: '202401',
     });
 
-    const options = request.mock.calls[0]![0];
+    const options = requestEnvelope.mock.calls[0]![0];
     expect(options.body.keyWords).toBeUndefined();
   });
 
   it('传递 HTTP 错误状态码', async () => {
-    const { client, request } = makeMockClient();
+    const { client, requestEnvelope } = makeMockClient();
     const error = Object.assign(new Error('Bad Request'), { httpStatus: 400 });
-    request.mockRejectedValue(error);
+    requestEnvelope.mockRejectedValue(error);
 
     const api = createHkjcxzclbApi(client);
     await expect(
@@ -71,9 +74,9 @@ describe('createHkjcxzclbApi', () => {
   });
 
   it('传递业务错误码', async () => {
-    const { client, request } = makeMockClient();
+    const { client, requestEnvelope } = makeMockClient();
     const error = Object.assign(new Error('业务失败'), { code: 'E002', msg: '业务失败' });
-    request.mockRejectedValue(error);
+    requestEnvelope.mockRejectedValue(error);
 
     const api = createHkjcxzclbApi(client);
     await expect(

@@ -1,3 +1,6 @@
+/**
+ * 来源: packages/accounting/CONTRACT.md（共享契约，主 agent 定稿）
+ */
 /** 通用响应外壳。字段取自官方文档输出参数表与响应示例；官方 code/success 为 string，successful 为 boolean，禁止类型转换。 */
 export interface ApiEnvelope<T> {
   code?: string;

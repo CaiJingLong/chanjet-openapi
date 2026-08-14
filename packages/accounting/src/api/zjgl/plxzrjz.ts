@@ -3,8 +3,12 @@
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/zjgl/plxzrjz.md
  */
-
 import type { ChanjetClient } from '../../client.js';
+
+/**
+ * 模块错误码说明：官方文档错误码说明表为空，故本模块不定义错误码常量；
+ * 业务失败码统一由 ChanjetApiError.code 透传官方原文。
+ */
 
 /**
  * 批量新增日记账的单条日记账（请求体数组元素）。

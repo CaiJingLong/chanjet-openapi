@@ -2,6 +2,8 @@
  * 来源: https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/wldw
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/jcda/wldw.md
+ *
+ * 错误码说明：batchUpsertApi 错误码表为非标准格式，remove/batchUpsert/query 无错误码说明表，故无错误码常量。
  */
 import type { ChanjetClient } from '../../client.js';
 
@@ -36,8 +38,8 @@ export interface BatchUpsertApiParamsItem {
   orgUnit: BatchUpsertApiParamsItemOrgUnit;
   /** 第三方同步方准备同步数据的id */
   id: number;
-  /** 基础信息 */
-  custVendorContactList?: BatchUpsertApiParamsItemCustVendorContact[];
+  /** 基础信息（文档类型为 object，以参数表为准） */
+  custVendorContactList?: BatchUpsertApiParamsItemCustVendorContact;
 }
 
 /**
@@ -370,10 +372,10 @@ export interface UpdateParams {
   code: string;
   /** 往来单位性质 */
   partyRoleTypeId: UpdateParamsPartyRoleTypeId;
-  /** 往来单位分类 */
+  /** 往来单位分类（文档必填列标必填，描述标选填，以必填列为准） */
   partyCategory: UpdateParamsPartyCategory;
-  /** 往来单位联系人 */
-  custVendorContactList?: UpdateParamsCustVendorContact[];
+  /** 往来单位联系人（文档类型为 object，以参数表为准） */
+  custVendorContactList: UpdateParamsCustVendorContact;
 }
 
 /**
@@ -388,7 +390,7 @@ export interface UpdateParamsPartyRoleTypeId {
  * 修改往来单位分类。
  */
 export interface UpdateParamsPartyCategory {
-  /** 往来单位分类编码 */
+  /** 往来单位分类编码（文档必填列标选填，描述标必填，以必填列为准） */
   code?: string;
 }
 
@@ -459,8 +461,8 @@ export function createWldwApi(client: ChanjetClient) {
      * @param params.items[].orgUnit.bankAccountNo 银行账号
      * @param params.items[].id 第三方同步方准备同步数据的id
      * @param params.items[].custVendorContactList 基础信息
-     * @param params.items[].custVendorContactList[].contactName 联系人
-     * @param params.items[].custVendorContactList[].telephone 手机号
+     * @param params.items[].custVendorContactList.contactName 联系人
+     * @param params.items[].custVendorContactList.telephone 手机号
      * @returns 同步成功的数据，键为系统生成的往来单位id、值为第三方同步过来的id
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
      * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/wldw
@@ -601,11 +603,11 @@ export function createWldwApi(client: ChanjetClient) {
      * @param params.partyCategory 往来单位分类
      * @param params.partyCategory.code 往来单位分类编码
      * @param params.custVendorContactList 往来单位联系人
-     * @param params.custVendorContactList[].contactName 往来单位联系人名称
-     * @param params.custVendorContactList[].address1 往来单位联系人地址
-     * @param params.custVendorContactList[].telephone 联系电话
-     * @param params.custVendorContactList[].email 电子邮件
-     * @param params.custVendorContactList[].comments 联系人备注
+     * @param params.custVendorContactList.contactName 往来单位联系人名称
+     * @param params.custVendorContactList.address1 往来单位联系人地址
+     * @param params.custVendorContactList.telephone 联系电话
+     * @param params.custVendorContactList.email 电子邮件
+     * @param params.custVendorContactList.comments 联系人备注
      * @returns 修改结果列表，每项包含编码、错误码与错误描述；常见错误码见 {@link UPDATE_CUSTVENDOR_ERRORS}
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
      * @see https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/wldw
@@ -619,9 +621,7 @@ export function createWldwApi(client: ChanjetClient) {
           code: params.code,
           partyRoleTypeId: params.partyRoleTypeId,
           partyCategory: params.partyCategory,
-          ...(params.custVendorContactList !== undefined
-            ? { custVendorContactList: params.custVendorContactList }
-            : {}),
+          custVendorContactList: params.custVendorContactList,
         },
       });
     },

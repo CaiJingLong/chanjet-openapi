@@ -2,6 +2,8 @@
  * 来源: https://openapi.chanjet.com/md/docs/file/apiFile/accounting/jcda/xm
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/jcda/xm.md
+ *
+ * 文档各接口错误码说明表为空或未提供，故无错误码常量。
  */
 import type { ChanjetClient } from '../../client.js';
 
@@ -166,6 +168,9 @@ export interface UpdateParamsCustomizedField {
 
 /**
  * 项目修改返回结果条目。
+ *
+ * 注意：文档输出参数表 data 类型为 object（单数），但响应示例为数组，
+ * 本实现返回 UpdateResult[]（数组），与参数表存在冲突。
  */
 export interface UpdateResult {
   /** 错误信息 */
@@ -183,6 +188,9 @@ export function createXmApi(client: ChanjetClient) {
   return {
     /**
      * 同步删除项目：好会计接受第三方项目基础档案删除信息。
+     *
+     * 注意：文档参数表将 removeTime 列在 Body 下，但示例 URL 为 query string，
+     * 本实现按示例放在 query，与参数表存在冲突。
      *
      * @param params 请求参数
      * @param params.bookid 账套id

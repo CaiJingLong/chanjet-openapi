@@ -22,8 +22,9 @@ export interface QueryFixedAssetParams {
 }
 
 /**
- * 响应正文还包含 aggregators（合计）、statusControl（控制）、total、totalPages、page、pageSize
- * 等顶层字段（位于 data 之外）。本方法经 client.request 仅返回 data 数组，其余字段见下方类型。
+ * 响应正文为扁平结构，aggregators（合计）、statusControl（控制）、total、totalPages、page、pageSize
+ * 等顶层字段与 data 数组同级。若走 client.request 会因 data 字段存在而只返回 data 数组，丢失其余顶层字段，
+ * 故用 requestEnvelope 取完整响应体。
  */
 
 /** 合计 */
@@ -134,8 +135,23 @@ export interface QueryFixedAssetData {
   depnPatternEnumLabel?: string;
 }
 
-/** （外部接口-新版资产）查询资产列表 - 响应 data 字段（资产数组） */
-export type QueryFixedAssetResult = QueryFixedAssetData[];
+/** （外部接口-新版资产）查询资产列表 - 完整响应（含 data 数组及顶层分页/合计/控制字段） */
+export interface QueryFixedAssetResult {
+  /** 数据（资产数组） */
+  data?: QueryFixedAssetData[];
+  /** 合计 */
+  aggregators?: QueryFixedAssetAggregators;
+  /** 控制 */
+  statusControl?: QueryFixedAssetStatusControl;
+  /** 总条数 */
+  total?: number;
+  /** 总页数 */
+  totalPages?: number;
+  /** 当前页 */
+  page?: number;
+  /** 每页条数 */
+  pageSize?: number;
+}
 
 /**
  * 本接口文档未提供错误码说明表。
@@ -154,12 +170,12 @@ export function createHkjcxzclbApi(client: ChanjetClient) {
      * @param params.queryMethod 查询方法默认简单查询，必填（请求体）
      * @param params.keyWords 简单查询条件 编码/名称，可选（请求体）
      * @param params.period 查询期间，必填（请求体）
-     * @returns 资产数组；响应正文另含 aggregators、statusControl、total、totalPages、page、pageSize 等顶层字段，不在本返回值内
+     * @returns 完整响应（含 data 资产数组及 aggregators、statusControl、total、totalPages、page、pageSize 等顶层字段）
      * @throws {ChanjetApiError} 远端返回业务错误、网络异常或签名失败
      * @see https://open.chanjet.com/md/docs/file/apiFile/accounting/hkjgdzc/hkjcxzclb
      */
-    queryFixedAsset(params: QueryFixedAssetParams): Promise<QueryFixedAssetResult> {
-      return client.request<QueryFixedAssetResult>({
+    async queryFixedAsset(params: QueryFixedAssetParams): Promise<QueryFixedAssetResult> {
+      const envelope = await client.requestEnvelope<QueryFixedAssetResult>({
         method: 'POST',
         path: '/accounting/asset/fixedAssetRestructure/queryFixedAsset/{bookid}',
         pathParams: { bookid: params.bookid },
@@ -171,6 +187,7 @@ export function createHkjcxzclbApi(client: ChanjetClient) {
           period: params.period,
         },
       });
+      return envelope as unknown as QueryFixedAssetResult;
     },
   };
 }

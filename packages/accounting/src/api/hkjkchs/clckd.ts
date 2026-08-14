@@ -2,6 +2,7 @@
  * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/hkjkchs/clckd
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/hkjkchs/clckd.md
+ * 注意: 文档未提供错误码说明表，故无错误码常量。
  */
 
 import type { ChanjetClient, RequestOptions } from '../../client.js';
@@ -120,13 +121,13 @@ export interface MaterialStockListParams {
   startDate?: string;
   /** 结束时间 */
   endDate?: string;
-  /** 单据编号 */
+  /** 单据编号（参数表为 string，示例为数组，以参数表为准） */
   voucherCode?: string;
-  /** 外部单据编号 */
+  /** 外部单据编号（参数表为 string，示例为数组，以参数表为准） */
   voucherExternalCode?: string;
   /** 页数 */
   page: number;
-  /** 页行数 */
+  /** 页行数（参数表为 string，示例为数字，以参数表为准） */
   pageSize: string;
 }
 
@@ -156,7 +157,7 @@ export interface MaterialStockAddParams {
   refVoucherId?: number;
   /** 来源单据 生产加工单填 MpManufactureOrder */
   refBoName?: string;
-  /** 自定义项 */
+  /** 自定义项（参数表为 customizedField，示例为 customizedFieldList，以参数表为准） */
   customizedField?: MaterialStockCustomizedField[];
   /** 材料列表 */
   detailList: MaterialStockAddDetail[];
@@ -192,7 +193,7 @@ export interface MaterialStockUpdateParams {
   bizEmployeeCode?: string;
   /** 备注 */
   comments?: string;
-  /** 自定义项 */
+  /** 自定义项（参数表为 customizedField，示例为 customizedFieldList，以参数表为准） */
   customizedField?: MaterialStockCustomizedField[];
   /** 材料列表 */
   detailList: MaterialStockUpdateDetail[];

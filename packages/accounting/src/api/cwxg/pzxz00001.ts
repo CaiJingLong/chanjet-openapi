@@ -777,7 +777,7 @@ export interface CreateNonSubsidiaryAcctgTransResult {
   boName?: string;
   /** 凭证日期 */
   bizDate?: string;
-  /** 单据来源 */
+  /** 单据来源。注：参数表类型为 array<string>，但响应示例为对象数组（含 refBoName/refVoucherId），以参数表为准 */
   refVoucherInfo?: string[];
   /** 顺序号 */
   seqNum?: number;
@@ -1057,7 +1057,7 @@ export interface CreateRefVoucherAcctgTransResult {
   boName?: string;
   /** 凭证日期 */
   bizDate?: string;
-  /** 单据来源 */
+  /** 单据来源。注：参数表类型为 array<string>，但响应示例为对象数组（含 refBoName/refVoucherId），以参数表为准 */
   refVoucherInfo?: string[];
   /** 顺序号 */
   seqNum?: number;
@@ -1301,6 +1301,7 @@ export interface CreateForeignCurrencyAcctgTransParamsDetailGlSubAccount {
 
 /**
  * 新增凭证（外币）入参 - 凭证明细 - 科目信息。
+ * 注：文档说明列与字段名错位（drCrDirection 说明列为「是否是辅助核算」，hasSubsidiaryAccounting 说明列为「是否是末级」，isLeafNode 说明列为「借贷方向」），注释按字段名语义编写。
  */
 export interface CreateForeignCurrencyAcctgTransParamsDetailGlAccount {
   /** 科目编号 */

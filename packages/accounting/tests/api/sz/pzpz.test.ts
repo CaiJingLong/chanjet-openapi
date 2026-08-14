@@ -81,7 +81,7 @@ describe('createPzpzApi', () => {
     });
   });
 
-  it('disableCategory 映射 path/query', async () => {
+  it('disableCategory 映射 path/body', async () => {
     const { request, client } = makeClient();
     request.mockResolvedValue(undefined);
     const api = createPzpzApi(client);
@@ -92,7 +92,7 @@ describe('createPzpzApi', () => {
       method: 'POST',
       path: '/accounting/gl/acctgTransCategory/disableCategory/{bookid}',
       pathParams: { bookid: '90001' },
-      query: { id: '100004' },
+      body: { id: '100004' },
     });
   });
 

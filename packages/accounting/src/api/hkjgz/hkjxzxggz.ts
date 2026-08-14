@@ -2,6 +2,8 @@
  * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/hkjgz/hkjxzxggz
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/hkjgz/hkjxzxggz.md
+ *
+ * 文档无错误码说明章节，故本模块无错误码常量。
  */
 
 import type { ChanjetClient, RequestOptions } from '../../client.js';

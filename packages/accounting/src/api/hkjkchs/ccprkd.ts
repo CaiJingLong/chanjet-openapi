@@ -2,6 +2,7 @@
  * 来源: https://open.chanjet.com/md/docs/file/apiFile/accounting/hkjkchs/ccprkd
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/hkjkchs/ccprkd.md
+ * 注意: 文档未提供错误码说明表，故无错误码常量。
  */
 
 import type { ChanjetClient, RequestOptions } from '../../client.js';
@@ -92,6 +93,7 @@ export interface FinishedGoodsStockAddDetail {
   refVoucherDetailId?: number;
   /** 来源单据明细 生产加工单明细填写"MpManufactureOrderDetail" */
   refDetailBoName?: string;
+  /** 属性组合编码（参数表无此字段，请求示例中出现 productSpecNo，以参数表为准不添加为类型字段） */
 }
 
 /** 产成品入库单修改明细 */
@@ -142,14 +144,15 @@ export interface FinishedGoodsStockListParams {
   startDate?: string;
   /** 结束时间 */
   endDate?: string;
-  /** 单据编号 */
+  /** 单据编号（参数表为 string，示例为数组，以参数表为准） */
   voucherCode?: string;
-  /** 外部单据编号 */
+  /** 外部单据编号（参数表为 string，示例为数组，以参数表为准） */
   voucherExternalCode?: string;
+  /** id（参数表为 array<string>，示例为整数数组，以参数表为准） */
   id?: string[];
   /** 页数 */
   page: number;
-  /** 页行数 */
+  /** 页行数（参数表为 string，示例为数字，以参数表为准） */
   pageSize: string;
 }
 
@@ -175,7 +178,7 @@ export interface FinishedGoodsStockUpdateParams {
   bizEmployeeCode?: string;
   /** 备注 */
   comments?: string;
-  /** 自定义项 */
+  /** 自定义项（参数表为 customizedField，示例为 customizedFieldList，以参数表为准） */
   customizedField?: FinishedGoodsStockCustomizedField[];
   /** 明细列表 */
   detailList: FinishedGoodsStockUpdateDetail[];
@@ -205,7 +208,7 @@ export interface FinishedGoodsStockAddParams {
   refVoucherId?: number;
   /** 来源单据名称 生产加工单填写"MpManufactureOrder" */
   refBoName?: string;
-  /** 自定义项 */
+  /** 自定义项（参数表为 customizedField，示例为 customizedFieldList，以参数表为准） */
   customizedField?: FinishedGoodsStockCustomizedField[];
   /** 明细列表 */
   detailList: FinishedGoodsStockAddDetail[];

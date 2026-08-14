@@ -55,7 +55,7 @@ export interface QueryResult {
   glAccountId?: number;
   /** 科目名称 */
   glAccountName?: string;
-  /** 是否应交增值税 */
+  /** 文档未提供说明 */
   vatPaybel?: boolean;
   /** 年的金额 */
   year?: string;
@@ -71,9 +71,9 @@ export interface QueryTaxFluctuateParams {
 
 /** 查询纳税波动表（参数为 period）结果项。 */
 export interface QueryTaxFluctuateResult {
-  /** 11月金额 */
+  /** 文档未提供说明 */
   _11?: number;
-  /** 12月金额 */
+  /** 文档未提供说明 */
   _12?: number;
   /** 科目名称 */
   glAccountName?: string;
@@ -85,31 +85,31 @@ export interface QueryTaxFluctuateResult {
   _1?: number;
   /** 应交增值税明细科目 */
   glAccountCodes?: QueryTaxFluctuateResultGlAccountCodesItem[];
-  /** 2月金额 */
+  /** 文档未提供说明 */
   _2?: number;
-  /** 3月金额 */
+  /** 文档未提供说明 */
   _3?: number;
-  /** 4月金额 */
+  /** 文档未提供说明 */
   _4?: number;
-  /** 5月金额 */
+  /** 文档未提供说明 */
   _5?: number;
-  /** 6月金额 */
+  /** 文档未提供说明 */
   _6?: number;
-  /** 7月金额 */
+  /** 文档未提供说明 */
   _7?: number;
-  /** 8月金额 */
+  /** 文档未提供说明 */
   _8?: number;
-  /** 9月金额 */
+  /** 文档未提供说明 */
   _9?: number;
-  /** 10月金额 */
+  /** 文档未提供说明 */
   _10?: number;
 }
 
 /** 应交增值税明细科目项。 */
 export interface QueryTaxFluctuateResultGlAccountCodesItem {
-  /** 科目编码 */
+  /** 文档未提供说明 */
   no?: string;
-  /** 科目id */
+  /** 文档未提供说明 */
   id?: number;
 }
 

@@ -70,7 +70,7 @@ export function createHkjxzxggdzcApi(client: ChanjetClient) {
      * @param params.name 固定资产名称，必填（请求体）
      * @param params.fixedAssetTypeId 固定资产类别ID，必填（请求体）
      * @param params.accuquiredPeriod 购买期间，必填（请求体）
-     * @param params.depnPatternEnum 折旧方法（STRAIGHT_LINE/Double_DECLINING/NONE），必填（请求体）
+     * @param params.depnPatternEnum 折旧方法（STRAIGHT_LINE/DOUBLE_DECLINING/NONE），必填（请求体）
      * @param params.baseOriginalValue 原值，必填（请求体）
      * @param params.usefulLifeMonths 使用期限，必填（请求体）
      * @param params.salvageValuePct 残值率，必填（请求体）
