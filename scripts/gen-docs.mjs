@@ -109,9 +109,13 @@ function processMarkdown(content, filePath, pkgDir) {
             // 找不到，保留原始相对链接
             return `](${link})`;
           })
+          // 保护合法 HTML 标签（details/summary），转义后再恢复
+          .replace(/<\/?(?:details|summary)\b[^>]*>/g, (m) => `\x00HTMLTAG${m.replace(/</g, '\x01').replace(/>/g, '\x02')}\x00`)
           // 转义裸尖括号
           .replace(/<(?=[A-Za-z])/g, '&lt;')
           .replace(/(?<=[A-Za-z0-9_\]])>/g, '&gt;')
+          // 恢复 HTML 标签
+          .replace(/\x00HTMLTAG(.*?)\x00/g, (_, m) => m.replace(/\x01/g, '<').replace(/\x02/g, '>'))
       );
     })
     .join('\n');
@@ -227,10 +231,13 @@ function organizeDocs() {
     }
 
     // 对每个 .md 文件做 VitePress 安全处理
+    // accounting 由 gen-api-docs 生成，已是 VitePress 安全格式，跳过 processMarkdown
     const mdFiles = walkMd(dst);
-    for (const file of mdFiles) {
-      const raw = readFileSync(file, 'utf-8');
-      writeFileSync(file, processMarkdown(raw, file, dst), 'utf-8');
+    if (pkg === 'core') {
+      for (const file of mdFiles) {
+        const raw = readFileSync(file, 'utf-8');
+        writeFileSync(file, processMarkdown(raw, file, dst), 'utf-8');
+      }
     }
     // README.md → index.md（VitePress 映射为 /dir/）
     renameReadmeToIndex(dst);
@@ -396,10 +403,12 @@ function main() {
   rmSync(TMP_DIR, { recursive: true, force: true });
   mkdirSync(TMP_DIR, { recursive: true });
 
-  // 1. TypeDoc 生成
-  for (const pkg of PACKAGES) {
-    runTypedoc(pkg);
-  }
+  // 1a. TypeDoc 生成 core 包（类型/类文档）
+  runTypedoc('core');
+
+  // 1b. 人类友好 API 文档生成 accounting 包（输出到 docs-tmp/accounting/）
+  console.log('\n📦 [gen-api-docs] 生成 accounting 人类友好文档');
+  execSync('node scripts/gen-api-docs.mjs', { cwd: ROOT, stdio: 'inherit' });
 
   // 2. 组织到 docs/
   organizeDocs();

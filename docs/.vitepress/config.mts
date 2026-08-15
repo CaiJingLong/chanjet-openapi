@@ -1,4 +1,45 @@
 import { defineConfig } from 'vitepress';
+import { readdirSync, statSync, existsSync } from 'node:fs';
+import { join, basename } from 'node:path';
+
+const ROOT = join(import.meta.dirname, '..');
+
+// 模块中文名映射
+const MODULE_NAMES: Record<string, string> = {
+  bb: '报表',
+  cwxg: '财务相关',
+  hkjMenu: '菜单',
+  hkjRoleManager: '角色管理',
+  hkjcssz: '财务设置',
+  hkjgdzc: '固定资产',
+  hkjgz: '工资',
+  hkjjz: '结账',
+  hkjkchs: '库存核算',
+  jcda: '基础档案',
+  km: '科目',
+  pjgl: '票据管理',
+  sz: '收付',
+  zb: '账表',
+  zjgl: '资金管理',
+  zt: '账套',
+};
+
+/** 从 docs/accounting/ 自动构建侧边栏 */
+function buildAccountingSidebar() {
+  const acctDir = join(ROOT, 'docs', 'accounting');
+  const modules: { text: string; link: string }[] = [];
+
+  if (existsSync(acctDir)) {
+    for (const entry of readdirSync(acctDir).sort()) {
+      const full = join(acctDir, entry);
+      if (!statSync(full).isDirectory()) continue;
+      const label = MODULE_NAMES[entry] ? `${entry} ${MODULE_NAMES[entry]}` : entry;
+      modules.push({ text: label, link: `/accounting/${entry}/` });
+    }
+  }
+
+  return modules;
+}
 
 export default defineConfig({
   title: 'chanjet-openapi',
@@ -49,24 +90,8 @@ export default defineConfig({
         },
         {
           text: 'API 模块',
-          items: [
-            { text: 'bb 报表', link: '/accounting/bb/' },
-            { text: 'cwxg 财务相关', link: '/accounting/cwxg/' },
-            { text: 'hkjMenu 菜单', link: '/accounting/hkjMenu/' },
-            { text: 'hkjRoleManager 角色管理', link: '/accounting/hkjRoleManager/' },
-            { text: 'hkjcssz 财务设置', link: '/accounting/hkjcssz/' },
-            { text: 'hkjgdzc 固定资产', link: '/accounting/hkjgdzc/' },
-            { text: 'hkjgz 工资', link: '/accounting/hkjgz/' },
-            { text: 'hkjjz 结账', link: '/accounting/hkjjz/' },
-            { text: 'hkjkchs 库存核算', link: '/accounting/hkjkchs/' },
-            { text: 'jcda 基础档案', link: '/accounting/jcda/' },
-            { text: 'km 科目', link: '/accounting/km/' },
-            { text: 'pjgl 票据管理', link: '/accounting/pjgl/' },
-            { text: 'sz 收付', link: '/accounting/sz/' },
-            { text: 'zb 账表', link: '/accounting/zb/' },
-            { text: 'zjgl 资金管理', link: '/accounting/zjgl/' },
-            { text: 'zt 账套', link: '/accounting/zt/' },
-          ],
+          collapsed: false,
+          items: buildAccountingSidebar(),
         },
       ],
     },
