@@ -57,7 +57,7 @@ export default defineConfig({
             { text: 'hkjcssz 财务设置', link: '/accounting/hkjcssz/' },
             { text: 'hkjgdzc 固定资产', link: '/accounting/hkjgdzc/' },
             { text: 'hkjgz 工资', link: '/accounting/hkjgz/' },
-            { text: 'hkjjz 结账', link: '/accounting/hkjjjz/' },
+            { text: 'hkjjz 结账', link: '/accounting/hkjjz/' },
             { text: 'hkjkchs 库存核算', link: '/accounting/hkjkchs/' },
             { text: 'jcda 基础档案', link: '/accounting/jcda/' },
             { text: 'km 科目', link: '/accounting/km/' },
