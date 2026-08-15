@@ -16,6 +16,7 @@ import {
   mkdirSync,
   readFileSync,
   readdirSync,
+  renameSync,
   rmSync,
   statSync,
   writeFileSync,
@@ -63,11 +64,27 @@ function escapeAngleBrackets(content) {
         return line;
       }
       if (inCodeBlock) return line;
-      // 非代码块：转义裸尖括号（不影响 markdown 链接/HTML 标签）
-      // 只转义看起来像泛型的 `<word` 模式，避免破坏合法 HTML 标签
-      return line.replace(/<(?=[A-Za-z])/g, '&lt;').replace(/(?<=[A-Za-z0-9_\]])>/g, '&gt;');
+      // 非代码块：转义裸尖括号 + 修正 README 链接为 index
+      return line
+        .replace(/README\.md\)/g, 'index.md)')
+        .replace(/\/README\)/g, '/index)')
+        .replace(/\/README#/g, '/index#')
+        .replace(/<(?=[A-Za-z])/g, '&lt;')
+        .replace(/(?<=[A-Za-z0-9_\]])>/g, '&gt;');
     })
     .join('\n');
+}
+
+/** 递归将目录下所有 README.md 重命名为 index.md */
+function renameReadmeToIndex(dir) {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      renameReadmeToIndex(full);
+    } else if (entry.name === 'README.md') {
+      renameSync(full, join(dir, 'index.md'));
+    }
+  }
 }
 
 /** 清理 TypeDoc markdown 中的导航噪音，保留内容 */
@@ -139,6 +156,8 @@ function organizeDocs() {
       const raw = readFileSync(file, 'utf-8');
       writeFileSync(file, escapeAngleBrackets(raw), 'utf-8');
     }
+    // 将每个目录下的 README.md 重命名为 index.md（VitePress 映射为 /dir/）
+    renameReadmeToIndex(dst);
     console.log(`  ${pkg}/ → docs/${pkg}/ (${mdFiles.length} files)`);
   }
 }
