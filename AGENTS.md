@@ -60,7 +60,7 @@ packages/<product>/           # 每产品一个包（如 accounting）
 - **包管理**：pnpm + workspace（根 `pnpm-workspace.yaml`）。依赖变更必须提交 `pnpm-lock.yaml`；CI 与验证命令使用 `--frozen-lockfile`。禁止混用 npm/yarn。
 - **LSP**：TypeScript 项目 LSP 为 tsserver。每个包独立 `tsconfig.json`；重构/重命名**必须**走 LSP 的 `rename`/`rename_file`（跨文件引用安全），禁止文本查找替换式改名。
 - **格式化**：prettier，根 `.prettierrc` 统一（`semi: true`、`singleQuote: true`、`printWidth: 100`、`trailingComma: "all"`）。`.cache/` 加入 `.prettierignore`——上游快照禁止重排。
-- **Node 目标**：Node >= 18（原生 `fetch`），`engines` 字段显式声明。
+- **Node 目标**：Node >= 22（OIDC trusted publishing 要求 + 原生 `fetch`），`engines` 字段显式声明。根 `package.json` 必须声明 `packageManager` 字段（如 `pnpm@10.18.2`），供 CI `pnpm/action-setup` 读取。
 
 ## 6. 代码规范
 
