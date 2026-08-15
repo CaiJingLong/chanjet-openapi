@@ -1,5 +1,8 @@
 # chanjet-openapi
 
+[![npm version](https://img.shields.io/npm/v/@chanjet-openapi/core.svg?label=@chanjet-openapi/core)](https://www.npmjs.com/package/@chanjet-openapi/core)
+[![npm version](https://img.shields.io/npm/v/@chanjet-openapi/accounting.svg?label=@chanjet-openapi/accounting)](https://www.npmjs.com/package/@chanjet-openapi/accounting)
+
 畅捷通开放平台（Chanjet Open Platform）TypeScript SDK monorepo：官方 API 的 SDK 源码 + 离线文档镜像。
 
 - 远端契约来源：<https://open.chanjet.com/llms.txt>
@@ -18,15 +21,15 @@
 
 按官方分类，六个产品包（第一期只做 accounting）：
 
-| 包                            | 产品         | 说明                                  | 状态         |
-| ----------------------------- | ------------ | ------------------------------------- | ------------ |
-| `@chanjet-openapi/core`       | 公共核心     | 鉴权、HTTP 客户端、错误模型、通用类型 | 已发布 0.1.1 |
-| `@chanjet-openapi/accounting` | 好会计       | 智能云财税系统 API                    | 已发布 0.1.1 |
-| `@chanjet-openapi/finance`    | 易代账       | 代账管理系统 API                      | 规划中       |
-| `@chanjet-openapi/zplus`      | 好业财       | 进销存、业财税一体化 API              | 规划中       |
-| `@chanjet-openapi/hsy`        | 好生意       | 智能营销与进销存 API                  | 规划中       |
-| `@chanjet-openapi/tcloud`     | T+ / T+Cloud | 企业 ERP API，含 tIncrement 增值服务  | 规划中       |
-| `@chanjet-openapi/stapi`      | 生态 API     | 钉钉等生态同步与单点登录              | 规划中       |
+| 包                                                                                         | 产品         | 说明                                  | 状态         |
+| ------------------------------------------------------------------------------------------ | ------------ | ------------------------------------- | ------------ |
+| [`@chanjet-openapi/core`](https://www.npmjs.com/package/@chanjet-openapi/core)             | 公共核心     | 鉴权、HTTP 客户端、错误模型、通用类型 | 已发布 0.1.2 |
+| [`@chanjet-openapi/accounting`](https://www.npmjs.com/package/@chanjet-openapi/accounting) | 好会计       | 智能云财税系统 API                    | 已发布 0.1.2 |
+| `@chanjet-openapi/finance`                                                                 | 易代账       | 代账管理系统 API                      | 规划中       |
+| `@chanjet-openapi/zplus`                                                                   | 好业财       | 进销存、业财税一体化 API              | 规划中       |
+| `@chanjet-openapi/hsy`                                                                     | 好生意       | 智能营销与进销存 API                  | 规划中       |
+| `@chanjet-openapi/tcloud`                                                                  | T+ / T+Cloud | 企业 ERP API，含 tIncrement 增值服务  | 规划中       |
+| `@chanjet-openapi/stapi`                                                                   | 生态 API     | 钉钉等生态同步与单点登录              | 规划中       |
 
 ## 仓库结构
 
@@ -89,8 +92,8 @@ core 和 accounting 两个包已实现并发布到 npm。
 ### npm 发布
 
 - npm org `@chanjet-openapi` 已创建
-- `@chanjet-openapi/core@0.1.0` / `0.1.1` 已发布
-- `@chanjet-openapi/accounting@0.1.0` / `0.1.1` 已发布
+- `@chanjet-openapi/core@0.1.0` / `0.1.1` / `0.1.2` 已发布
+- `@chanjet-openapi/accounting@0.1.0` / `0.1.1` / `0.1.2` 已发布
 - 后续发布通过 GitHub Actions OIDC trusted publishing 自动执行（changeset → Release PR → merge → CI publish）
 - 发布流程详见 `chanjet-release` skill
 
