@@ -8,7 +8,7 @@
  * - `disbursementAmount`：表 string，示例 number（0）
  * - `balanceAmount`：表 string，示例 number（1404644.00）
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /**
  * 模块错误码说明：官方文档错误码说明表为空，故本模块不定义错误码常量；

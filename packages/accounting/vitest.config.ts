@@ -8,9 +8,6 @@ export default defineConfig({
       thresholds: {
         statements: 85,
         branches: 85,
-        'src/auth/**/*.ts': { statements: 95, branches: 95 },
-        'src/errors.ts': { statements: 95, branches: 95 },
-        'src/client.ts': { statements: 95, branches: 95 },
       },
     },
   },

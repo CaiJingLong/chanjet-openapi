@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, type Mock } from 'vitest';
 import { createBmYgApi } from '../../../src/api/jcda/bm-yg.js';
-import type { ChanjetClient } from '../../../src/client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 function makeClient(): { client: ChanjetClient; request: Mock } {
   const request = vi.fn();

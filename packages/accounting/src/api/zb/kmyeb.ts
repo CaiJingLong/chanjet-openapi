@@ -4,7 +4,7 @@
  * 本地快照: .cache/docs/accounting/zb/kmyeb.md
  */
 
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /** 查询科目余额表（POST rpt）请求体。 */
 export type RptParams = {

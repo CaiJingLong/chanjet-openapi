@@ -4,7 +4,7 @@
  * 本地快照: .cache/docs/accounting/bb/newReport.md
  */
 
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /**
  * 官方文档（newReport）未提供「错误码说明」表，故本模块不定义错误码常量。

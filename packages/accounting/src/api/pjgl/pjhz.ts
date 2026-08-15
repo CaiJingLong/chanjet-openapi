@@ -4,7 +4,7 @@
  * 本地快照: .cache/docs/accounting/pjgl/pjhz.md
  * 注: 本文档「错误码说明」表为空（仅一行 `- | -`），故本模块无错误码常量表。
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /**
  * 票据汇总表请求体。

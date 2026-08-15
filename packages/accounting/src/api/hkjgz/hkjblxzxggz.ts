@@ -6,7 +6,7 @@
  * 文档无错误码说明章节，故本模块无错误码常量。
  */
 
-import type { ChanjetClient, RequestOptions } from '../../client.js';
+import type { ChanjetClient, RequestOptions } from '@chanjet-openapi/core';
 
 /** 工资加减项 */
 export interface AddBatchEmployeeItemPayRollPubSubs {

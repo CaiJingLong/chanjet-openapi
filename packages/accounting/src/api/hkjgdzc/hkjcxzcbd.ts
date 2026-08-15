@@ -3,7 +3,7 @@
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/hkjgdzc/hkjcxzcbd.md
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /** （外部接口）查询资产变动 - 请求参数 */
 export interface GetModifyEntryListParams {

@@ -3,7 +3,7 @@
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/zjgl/hkjrjzxr.md
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /**
  * 模块错误码说明：官方文档错误码说明表为空，故本模块不定义错误码常量；

@@ -3,7 +3,7 @@
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/pjgl/xzfp.md
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /**
  * 发票管理模块错误码常量表。

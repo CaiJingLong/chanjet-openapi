@@ -3,7 +3,7 @@
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/sz/pzpz.md
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /** 查询凭证类别请求参数。 */
 export interface GetAcctgTransCategoryParams {

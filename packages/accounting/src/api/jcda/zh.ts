@@ -5,7 +5,7 @@
  *
  * 文档各接口错误码说明表为空或未提供，故无错误码常量。
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /**
  * 新增账号请求参数。

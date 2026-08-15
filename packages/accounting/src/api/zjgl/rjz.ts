@@ -8,7 +8,7 @@
  * - 修改日记账请求体 `disbursementExchangeRate` 表 string、示例 null；已按表取 string。
  */
 
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /**
  * 日记账查询的请求参数。

@@ -5,7 +5,7 @@
  *
  * 错误码说明：多数接口错误码说明表为空或未提供；getInitBalanceLists 接口错误码见 GET_INIT_BALANCE_LISTS_ERRORS 常量。
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /**
  * 获取所有科目及期初数据请求参数。

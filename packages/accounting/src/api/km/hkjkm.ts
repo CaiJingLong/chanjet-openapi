@@ -3,7 +3,7 @@
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/km/hkjkm.md
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /** 调整科目级次返回的 data：成功无返回值，失败返回错误信息字符串。 */
 export type AdjustSubjectCodeLenResult = string;

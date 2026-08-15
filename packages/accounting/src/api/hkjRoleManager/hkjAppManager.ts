@@ -3,7 +3,7 @@
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/hkjRoleManager/hkjAppManager.md
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 /**
  * 错误码说明：本文档 7 个接口（应用管理员交接、获取账套的角色列表、给用户授权角色接口、
  * 获取所有账套用户角色关系列表、解绑用户的角色、获取好会计应用管理员列表、

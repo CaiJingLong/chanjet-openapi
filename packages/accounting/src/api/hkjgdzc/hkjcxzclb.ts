@@ -15,7 +15,7 @@
  * - data[].baseCurrentDepnAmount（示例 12.88）
  * - data[].baseOpenningDepnAmount（示例 1252.12）
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /** （外部接口-新版资产）查询资产列表 - 请求参数 */
 export interface QueryFixedAssetParams {

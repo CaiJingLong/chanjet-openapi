@@ -5,7 +5,7 @@
  *
  * 文档各接口错误码说明表为空或未提供，故无错误码常量。
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /** 同步结果映射：键为第三方同步 id，值为系统生成的 id 或错误信息 */
 type SyncResultMap = Record<string, string | number>;

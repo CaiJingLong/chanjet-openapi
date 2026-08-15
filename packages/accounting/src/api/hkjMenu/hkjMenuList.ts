@@ -3,7 +3,7 @@
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/hkjMenu/hkjMenuList.md
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 /**
  * 错误码说明：本文档两个接口（查询菜单列表、菜单查询）的"错误码说明"表均为空（-），
  * 无官方业务错误码可收录，故本文件不定义错误码常量。

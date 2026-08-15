@@ -6,7 +6,7 @@
  * 文档「错误码说明」表为空（| - | - |），故本模块无错误码常量。
  */
 
-import type { ChanjetClient, RequestOptions } from '../../client.js';
+import type { ChanjetClient, RequestOptions } from '@chanjet-openapi/core';
 
 /** （外部接口）精确查询工资请求参数 */
 export interface GetPayrollListParams {

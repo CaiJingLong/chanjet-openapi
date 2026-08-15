@@ -13,7 +13,7 @@
  * - data.fixedAssetDepnEntry[].baseCurrentDepnAmount（示例 1）
  * - data.fixedAssetDepnEntry[].usefulLifeMonths（示例 36）
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 export interface PreciseQueryAssetsParams {
   /** 账套 id，必填（路径参数） */

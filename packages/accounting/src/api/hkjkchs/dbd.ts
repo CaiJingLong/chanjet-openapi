@@ -5,7 +5,7 @@
  * 注意: 文档接口均未提供错误码说明表，故无错误码常量。
  */
 
-import type { ChanjetClient, RequestOptions } from '../../client.js';
+import type { ChanjetClient, RequestOptions } from '@chanjet-openapi/core';
 
 /** 调拨单自定义项 */
 export interface StockTransferCustomizedField {

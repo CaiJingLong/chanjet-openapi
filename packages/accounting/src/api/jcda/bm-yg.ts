@@ -5,7 +5,7 @@
  *
  * 错误码说明：syncDepartment/removeDepartment/queryDepartment/syncEmployee/removeEmployee/queryEmployee 无错误码说明表，batchUpsertEmployee/getDepartment/getEmployee 错误码说明表为空，故无错误码常量。
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /** 同步结果映射：键为第三方同步 id，值为系统生成的 id 或错误信息 */
 type SyncResultMap = Record<string, string | number>;

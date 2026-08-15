@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import type { ChanjetClient, RequestOptions } from '../../../src/client.js';
+import type { ChanjetClient, RequestOptions } from '@chanjet-openapi/core';
 import { createRjzApi } from '../../../src/api/zjgl/rjz.js';
 
 function makeClient() {

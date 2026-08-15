@@ -4,7 +4,7 @@
  * 本地快照: .cache/docs/accounting/hkjjz/hkjjz.md
  */
 
-import type { ChanjetClient, RequestOptions } from '../../client.js';
+import type { ChanjetClient, RequestOptions } from '@chanjet-openapi/core';
 
 /**
  * （外部接口）结账请求参数。

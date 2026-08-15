@@ -3,7 +3,7 @@
  * 抓取日期: 2026-08-14
  * 本地快照: .cache/docs/accounting/zt/jcda-zt.md
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /** 账套管理错误码表（文档"错误码说明"逐条收录）。 */
 export const JCDA_ZT_ERROR_CODES = {

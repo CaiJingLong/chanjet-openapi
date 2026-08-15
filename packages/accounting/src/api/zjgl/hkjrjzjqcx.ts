@@ -16,7 +16,7 @@
  * - 响应体 `id`：表 string，示例 1499005159997440（number）。
  */
 
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /**
  * 精确查询日记账的搜索条件对象。

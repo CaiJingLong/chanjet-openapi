@@ -4,7 +4,7 @@
  * 本地快照: .cache/docs/accounting/zb/mxb.md
  */
 
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /** 明细账分页查询（GET queryPaging）查询参数。 */
 export type QueryPagingParams = {

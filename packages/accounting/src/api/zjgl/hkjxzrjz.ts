@@ -10,7 +10,7 @@
  * - `disbursementAmount`：表 string，示例 number（0）
  * - `sequenceNum`：表 integer，示例 number（-1）
  */
-import type { ChanjetClient } from '../../client.js';
+import type { ChanjetClient } from '@chanjet-openapi/core';
 
 /**
  * 模块错误码说明：官方文档错误码说明表为空，故本模块不定义错误码常量；

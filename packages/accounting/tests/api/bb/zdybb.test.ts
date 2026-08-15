@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import type { ChanjetClient, RequestOptions } from '../../../src/client.js';
+import type { ChanjetClient, RequestOptions } from '@chanjet-openapi/core';
 import { createZdybbApi } from '../../../src/api/bb/zdybb.js';
 
 /**
