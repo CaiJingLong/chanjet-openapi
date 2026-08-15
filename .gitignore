@@ -3,3 +3,10 @@ dist/
 coverage/
 .cache/
 *.tsbuildinfo
+# 文档生成产物（由 gen-docs.mjs 生成，CI 部署到 gh-pages）
+docs/core/
+docs/accounting/
+docs/llms.txt
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+docs-tmp/

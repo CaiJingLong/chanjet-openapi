@@ -5,3 +5,9 @@ coverage/
 pnpm-lock.yaml
 *.tsbuildinfo
 .changeset/
+docs/core/
+docs/accounting/
+docs/llms.txt
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+docs-tmp/
