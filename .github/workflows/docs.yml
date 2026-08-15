@@ -60,5 +60,5 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Check links
-        run: npx linkinator "${{ steps.deploy.outputs.page_url }}" --recurse --skip "openapi.chanjet.com" --skip "github.io/interfaces/"
+        run: npx linkinator "${{ steps.deploy.outputs.page_url }}" --recurse --silent --skip "openapi.chanjet.com" --skip "github.io/interfaces/" --retry
         continue-on-error: true
