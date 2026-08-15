@@ -123,7 +123,7 @@ packages/<product>/           # 每产品一个包（如 accounting）
 
 ### 9.3 发布流程
 
-- **首发**：每个包第一版由维护者手动执行 `pnpm publish --filter @chanjet-openapi/<pkg>`（需先 `pnpm -r build` 生成 dist；本地不加 `--provenance`，该标志仅 CI OIDC 环境可用）。首发后版本号为 `0.1.0`。
+- **首发**：每个包第一版由维护者手动执行 `pnpm publish --filter @chanjet-openapi/<pkg> --registry https://registry.npmjs.org`（需先 `pnpm -r build` 生成 dist；本地不加 `--provenance`，该标志仅 CI OIDC 环境可用；如本地 registry 非官方需显式指定 `--registry`，见 `chanjet-release` skill §2.1.1）。首发后版本号为 `0.1.0`。先发 core 再发产品包（产品包的 `workspace:*` 依赖在 publish 时替换为已发布的 core 版本号）。
 - **后续发布**：全部通过 GitHub Actions 自动执行，使用 OIDC（OpenID Connect）鉴权，无需 npm token 入库。
 - 发布前 CI 必须执行完整验证：`pnpm -r build && pnpm -r typecheck && pnpm -r test && pnpm format:check`，全通过后才 publish。
 - `workspace:*` 依赖在 `pnpm publish` 时自动替换为实际版本号，无需手动修改。

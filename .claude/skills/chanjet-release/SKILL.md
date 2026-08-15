@@ -1,6 +1,6 @@
 ---
 name: chanjet-release
-description: "Use when publishing packages, creating changesets, bumping versions, or managing releases for the chanjet-openapi monorepo. Covers initial publish, subsequent releases via GitHub Actions OIDC, changeset authoring, and CHANGELOG conventions. Triggers: publish, release, changeset, version bump, changelog, npm publish."
+description: 'Use when publishing packages, creating changesets, bumping versions, or managing releases for the chanjet-openapi monorepo. Covers initial publish, subsequent releases via GitHub Actions OIDC, changeset authoring, and CHANGELOG conventions. Triggers: publish, release, changeset, version bump, changelog, npm publish.'
 ---
 
 # chanjet-openapi 发布流程
@@ -11,29 +11,31 @@ description: "Use when publishing packages, creating changesets, bumping version
 
 ### 1.1 0.x 阶段（当前）
 
-| 变更类型 | bump 级别 | 示例 | changeset 类型 |
-|----------|-----------|------|----------------|
-| 破坏性更改（API 删除/重命名/签名变更） | MINOR | 0.1.0 → 0.2.0 | `minor` |
-| 新增功能（向后兼容） | PATCH | 0.1.0 → 0.1.1 | `patch` |
-| Bug 修复 | PATCH | 0.1.1 → 0.1.2 | `patch` |
+| 变更类型                               | bump 级别 | 示例          | changeset 类型 |
+| -------------------------------------- | --------- | ------------- | -------------- |
+| 破坏性更改（API 删除/重命名/签名变更） | MINOR     | 0.1.0 → 0.2.0 | `minor`        |
+| 新增功能（向后兼容）                   | PATCH     | 0.1.0 → 0.1.1 | `patch`        |
+| Bug 修复                               | PATCH     | 0.1.1 → 0.1.2 | `patch`        |
 
 ### 1.2 1.0+ 阶段（未来）
 
-| 变更类型 | bump 级别 | changeset 类型 |
-|----------|-----------|----------------|
-| 破坏性更改 | MAJOR | `major` |
-| 新增功能 | MINOR | `minor` |
-| Bug 修复 | PATCH | `patch` |
+| 变更类型   | bump 级别 | changeset 类型 |
+| ---------- | --------- | -------------- |
+| 破坏性更改 | MAJOR     | `major`        |
+| 新增功能   | MINOR     | `minor`        |
+| Bug 修复   | PATCH     | `patch`        |
 
 ### 1.3 判断破坏性更改
 
 以下情况属于破坏性更改：
+
 - 删除或重命名已导出的类型/接口/函数
 - 改变已导出函数的参数签名（增删参数、改类型、改必填性）
 - 改变已导出函数的返回值结构
 - 改变 `package.json` 的 `exports` 路径
 
 以下情况**不**属于破坏性更改：
+
 - 新增导出符号
 - 新增可选参数
 - 内部实现重构（公共 API 不变）
@@ -49,8 +51,23 @@ description: "Use when publishing packages, creating changesets, bumping version
 - [ ] `package.json` 有 `publishConfig: { access: "public" }`
 - [ ] `package.json` 有 `exports` 显式声明入口
 - [ ] `tsconfig.build.json` 配置正确（`outDir: dist`, `noEmit: false`）
-- [ ] 已登录 npm（`npm whoami` 确认）
+- [ ] 已登录 npm 官方 registry（见 §2.1.1）
 - [ ] npm 账户对 `@chanjet-openapi` scope 有发布权限
+
+### 2.1.1 npm registry 说明
+
+如果本地 `npm config get registry` 返回的不是 `https://registry.npmjs.org`（如淘宝镜像 `https://registry.npmmirror.com`），所有登录和发布命令必须显式指定 `--registry https://registry.npmjs.org`，否则会发到错误 registry。
+
+```bash
+# 检查当前 registry
+npm config get registry
+
+# 登录官方 registry（如果当前 registry 非官方）
+npm login --registry https://registry.npmjs.org
+
+# 确认登录状态
+npm whoami --registry https://registry.npmjs.org
+```
 
 ### 2.2 执行步骤
 
@@ -65,14 +82,16 @@ pnpm format:check
 ls packages/<pkg>/dist/index.js
 
 # 3. 预览将要发布的文件（确认不含 src/tests）
-pnpm publish --filter @chanjet-openapi/<pkg> --dry-run
+pnpm publish --filter @chanjet-openapi/<pkg> --dry-run --registry https://registry.npmjs.org
 
 # 4. 发布（本地手动发布不加 --provenance，该标志仅 CI OIDC 环境可用）
-pnpm publish --filter @chanjet-openapi/<pkg>
+pnpm publish --filter @chanjet-openapi/<pkg> --registry https://registry.npmjs.org
 
 # 5. 验证
 npm view @chanjet-openapi/<pkg>@0.1.0
 ```
+
+> **注意**：如果本地 registry 已是官方 `https://registry.npmjs.org`，可省略 `--registry` 参数。
 
 ### 2.3 首发后
 
@@ -97,6 +116,7 @@ pnpm changeset
 ```
 
 交互式选择：
+
 1. 选择受影响的包（空格选择，回车确认）
 2. 选择 bump 类型（patch / minor / major）
 3. 写变更描述（Markdown，会写入 CHANGELOG）
@@ -107,8 +127,8 @@ pnpm changeset
 
 ```markdown
 ---
-"@chanjet-openapi/accounting": patch
-"@chanjet-openapi/core": minor
+'@chanjet-openapi/accounting': patch
+'@chanjet-openapi/core': minor
 ---
 
 修复凭证查询分页参数映射错误
@@ -122,6 +142,7 @@ frontmatter 中的包名必须与 `package.json` 的 `name` 完全一致。bump 
 ### 3.4 Release PR
 
 changesets/action 自动创建的 Release PR 会：
+
 - 消费所有未处理的 changeset 文件
 - bump 涉及包的 `version` 字段
 - 生成/更新各包的 `CHANGELOG.md`
@@ -171,7 +192,7 @@ changesets 生成的 CHANGELOG.md 格式：
 
 ```markdown
 ---
-"@chanjet-openapi/accounting": minor
+'@chanjet-openapi/accounting': minor
 ---
 
 **破坏性更改**：凭证查询方法 getVoucherList 参数重构
