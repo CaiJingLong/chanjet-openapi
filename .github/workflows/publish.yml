@@ -35,6 +35,13 @@ jobs:
       - name: Upgrade npm for OIDC trusted publishing
         run: npm install -g npm@latest
 
+      - name: Remove .npmrc auth placeholder for OIDC
+        run: |
+          # setup-node 写入 _authToken=${NODE_AUTH_TOKEN} 到 .npmrc，
+          # 空值会导致 npm ENEEDAUTH 而非走 OIDC，必须删除
+          sed -i '/_authToken/d; /always-auth/d' ~/.npmrc 2>/dev/null || true
+          rm -f /home/runner/work/_temp/.npmrc
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -53,11 +60,9 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm publish -r --provenance
+          publish: pnpm publish -r --provenance --no-git-checks
           version: pnpm changeset version
           commit: 'chore: release packages'
           title: 'chore: release packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # 清除 setup-node 注入的占位 NODE_AUTH_TOKEN，强制 npm 走 OIDC trusted publishing
-          NODE_AUTH_TOKEN: ''
