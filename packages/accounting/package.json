@@ -1,6 +1,6 @@
 {
   "name": "@chanjet-openapi/accounting",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "exports": {
     ".": {
@@ -19,6 +19,12 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@chanjet-openapi/core": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.5.4",

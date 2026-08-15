@@ -32,19 +32,28 @@
 ## 4. 仓库结构约定
 
 ```
-packages/<product>/           # 每产品一个包
-├── package.json              # name: @chanjet-openapi/<product>
+packages/core/                # 产品无关的共享核心
+├── package.json              # name: @chanjet-openapi/core
+├── CONTRACT.md               # 共享契约（核心签名、错误模型、行为规则）
 ├── tsconfig.json             # 见 §5
 ├── src/
 │   ├── index.ts              # 公共导出面（唯一出口）
 │   ├── client.ts             # 客户端入口：配置 + 请求编排
 │   ├── auth/                 # OAuth2 / 签名（官方"接口鉴权"指南）
 │   ├── errors.ts             # 统一错误模型
+│   └── types.ts              # 通用响应外壳 ApiEnvelope
+└── tests/                    # 与 src/ 同构
+
+packages/<product>/           # 每产品一个包（如 accounting）
+├── package.json              # name: @chanjet-openapi/<product>，dependencies 含 @chanjet-openapi/core
+├── tsconfig.json             # 见 §5
+├── src/
+│   ├── index.ts              # 公共导出面：re-export core + 产品 API 命名空间
 │   └── api/<module>/         # 按官方 API 模块分组，一个模块一个目录
 └── tests/                    # 与 src/ 同构
 ```
 
-公共能力（鉴权、签名、HTTP 核心）第一期在 `packages/accounting/src/` 内实现；**第二个产品接入时**才抽取为 `@chanjet-openapi/core`。禁止第一期做跨产品抽象。
+公共能力（鉴权、签名、HTTP 核心、错误模型、通用类型）已抽取为 `@chanjet-openapi/core`。产品包通过 `workspace:*` 依赖 core，re-export 其公共符号。禁止在产品包中重复实现核心能力。
 
 ## 5. 工具链约定
 
@@ -99,8 +108,49 @@ packages/<product>/           # 每产品一个包
 
 ## 9. 版本与发布
 
-- 包独立版本，使用 changesets 管理变更与 CHANGELOG。
-- 每个包 `package.json` 用 `exports` 显式声明公共入口；仅 `src/index.ts` 导出的符号属于公共 API，其余为内部实现。
+### 9.1 版本号规则
+
+- 每个包初始版本号为 `0.1.0`。
+- 版本号格式 `MAJOR.MINOR.PATCH`（SemVer）。在 `0.x` 阶段：MINOR 位表示破坏性更改，PATCH 位表示修复或新增功能。
+- 仅当发生破坏性更改时提升 MINOR 位（`0.X.0`）；修复 bug 或新增功能仅提升 PATCH 位（`0.x.Y`）。
+- 进入 `1.0` 后遵循标准 SemVer：破坏性更改升 MAJOR，新增功能升 MINOR，修复升 PATCH。
+
+### 9.2 版本提升时机
+
+- **日常开发不提升版本号**。`package.json` 中的 `version` 字段在非发布流程中保持不变。
+- 版本号提升只发生在发布流程中：changeset 消费时由 CI 自动 bump，或首发时手动设置。
+- 禁止在普通 PR / commit 中修改 `version` 字段。
+
+### 9.3 发布流程
+
+- **首发**：每个包第一版由维护者手动执行 `npm publish`（需先 `pnpm -r build` 生成 dist）。首发后版本号为 `0.1.0`。
+- **后续发布**：全部通过 GitHub Actions 自动执行，使用 OIDC（OpenID Connect）鉴权，无需 npm token 入库。
+- 发布前 CI 必须执行完整验证：`pnpm -r build && pnpm -r typecheck && pnpm -r test && pnpm format:check`，全通过后才 publish。
+- `workspace:*` 依赖在 `pnpm publish` 时自动替换为实际版本号，无需手动修改。
+
+### 9.4 changesets
+
+- 使用 changesets 管理变更记录与版本提升。每次变更（bugfix / feature / breaking）须附带一个 changeset 文件。
+- changeset 文件放在 `.changeset/` 目录，格式为 Markdown frontmatter（包名 + bump 类型）+ 变更描述。
+- CHANGELOG.md 由 changesets 自动生成，不手动编辑。
+- 配置文件 `.changeset/config.json` 控制 changeset 行为（access、baseBranch 等）。
+
+### 9.5 npm 发布配置
+
+- 每个包 `package.json` 必须声明 `publishConfig: { access: "public" }`（scoped 包默认 restricted，需显式公开）。
+- 每个包用 `exports` 显式声明公共入口；仅 `src/index.ts` 导出的符号属于公共 API，其余为内部实现。
+- `dist/` 在 `.gitignore` 中，不入版本库；CI 发布前必须 build。
+- 构建顺序：`pnpm -r build` 按拓扑排序执行，core 先于产品包。`pnpm -r typecheck` 前须先 build core 以生成 dist 产物。
+- 禁止任何含 `_authToken` 的 `.npmrc` 入库；OIDC 模式不需要持久化 token。
+
+### 9.6 GitHub Actions OIDC
+
+- 发布 workflow 使用 `id-token: write` 权限 + `npm publish --provenance` 发布。
+- 触发条件：changeset 消费 PR 合并到主分支（Changesets bot 自动创建）。
+- workflow 文件位于 `.github/workflows/publish.yml`。
+
+### 9.7 密钥与安全
+
 - 密钥/令牌：示例与日志中一律占位（`process.env.CHANJET_APP_KEY`），禁止打印 token 原文与签名中间值；错误日志脱敏后输出。
 - 远端调用：默认超时 30s（可配）；重试仅限幂等 GET 与网络层错误，指数退避最多 2 次；写操作（POST/PUT/DELETE）不自动重试。
 
@@ -125,3 +175,7 @@ packages/<product>/           # 每产品一个包
 - 禁止引入与"契约保真"冲突的便利性重命名（官方叫 `voucherType` 就不得改叫 `type`）。
 - 禁止绕过验证宣称完成（见 §10）。
 - 禁止用 sed/文本替换做跨文件重命名（必须走 LSP）。
+- 禁止在日常开发中修改 `package.json` 的 `version` 字段（首发除外，见 §9.2）。
+- 禁止手动编辑 CHANGELOG.md（由 changesets 自动生成，见 §9.4）。
+- 禁止在非发布流程中执行 `npm publish`（首发除外，见 §9.3）。
+- 禁止将含 `_authToken` 的 `.npmrc` 提交到版本库（OIDC 模式不需要，见 §9.5）。
