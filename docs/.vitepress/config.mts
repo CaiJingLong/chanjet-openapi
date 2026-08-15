@@ -4,7 +4,7 @@ export default defineConfig({
   title: 'chanjet-openapi',
   description: '畅捷通开放平台 TypeScript SDK',
   lastUpdated: true,
-  cleanUrls: true,
+  base: '/chanjet-openapi/',
   repo: 'https://github.com/CaiJingLong/chanjet-openapi',
 
   themeConfig: {
