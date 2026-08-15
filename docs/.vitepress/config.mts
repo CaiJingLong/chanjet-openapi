@@ -5,7 +5,7 @@ export default defineConfig({
   description: '畅捷通开放平台 TypeScript SDK',
   base: '/chanjet-openapi/',
   cleanUrls: true,
-  repo: 'https://github.com/CaiJingLong/chanjet-openapi',
+  ignoreDeadLinks: [/interfaces\/TokenProvider/],
 
   themeConfig: {
     nav: [

@@ -50,7 +50,6 @@ jobs:
 
       - name: Generate docs
         run: node scripts/gen-docs.mjs
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -59,3 +58,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deploy
         uses: actions/deploy-pages@v4
+
+      - name: Check links
+        run: npx linkinator "${{ steps.deploy.outputs.page_url }}" --recurse --silent
+        continue-on-error: true

@@ -54,7 +54,18 @@ function walkMd(dir, base = dir) {
  * 避免 Vue 编译器把泛型语法 `<T>`、`<Record<string, unknown>>` 误解析为 HTML 标签。
  * 代码块（``` 包裹）内的内容保持原样。
  */
-function escapeAngleBrackets(content) {
+/**
+ * 对 VitePress 不友好的 markdown 做安全处理：
+ * 1. 非代码块行中的尖括号转义（避免 Vue 编译器误解析泛型）
+ * 2. README 链接修正为 index
+ * 3. 相对 markdown 链接转为基于包根的绝对路径（适配扁平化后的目录结构）
+ *
+ * @param content markdown 内容
+ * @param filePath 当前文件的绝对路径（用于计算相对路径）
+ * @param pkgDir 当前包的 docs 目录（如 docs/core）
+ */
+function processMarkdown(content, filePath, pkgDir) {
+  const fileDir = dirname(filePath);
   const lines = content.split('\n');
   let inCodeBlock = false;
   return lines
@@ -64,13 +75,44 @@ function escapeAngleBrackets(content) {
         return line;
       }
       if (inCodeBlock) return line;
-      // 非代码块：转义裸尖括号 + 修正 README 链接为 index
-      return line
-        .replace(/README\.md\)/g, 'index.md)')
-        .replace(/\/README\)/g, '/index)')
-        .replace(/\/README#/g, '/index#')
-        .replace(/<(?=[A-Za-z])/g, '&lt;')
-        .replace(/(?<=[A-Za-z0-9_\]])>/g, '&gt;');
+      return (
+        line
+          // 修正 README 链接为 index
+          .replace(/README\.md\)/g, 'index.md)')
+          .replace(/\/README\)/g, '/index)')
+          // 修正 @chanjet-openapi/namespaces/ 链接（扁平化后已删除该目录）
+          // @chanjet-openapi/namespaces/api/index.md → /accounting（顶层 index）
+          // @chanjet-openapi/namespaces/auth/index.md → /core/auth/
+          .replace(/\]\(@chanjet-openapi\/namespaces\/api\/index\.md\)/g, '](/accounting/)')
+          .replace(/\]\(@chanjet-openapi\/namespaces\/auth\/index\.md\)/g, '](/core/auth/)')
+          // 将相对 markdown 链接转为绝对路径（支持跨包引用）
+          // ./ 和 ../ 开头的 .md 链接
+          .replace(/\]\(((?:\.|\.\.)\/[^)]+\.md)\)/g, (_, link) => {
+            // resolve 会解析 .. 但扁平化后路径变浅，可能超出 DOCS_DIR
+            // 用 resolve 后如果不在任何包下，尝试从 DOCS_DIR 级别推断目标
+            let abs = resolve(fileDir, link);
+            for (const pkg of PACKAGES) {
+              const pkgD = join(DOCS_DIR, pkg);
+              if (abs.startsWith(pkgD + '/') || abs === pkgD) {
+                const rel = relative(pkgD, abs).replace(/\.md$/, '');
+                return `](/${pkg}/${rel})`;
+              }
+            }
+            // 超出 DOCS_DIR：提取链接末尾的路径段，在各包下查找
+            const tail = link.replace(/^(?:\.\.?\/)+/, '').replace(/\.md$/, '');
+            for (const pkg of PACKAGES) {
+              const candidate = join(DOCS_DIR, pkg, tail);
+              if (existsSync(candidate + '.md') || existsSync(join(candidate, 'index.md'))) {
+                return `](/${pkg}/${tail})`;
+              }
+            }
+            // 找不到，保留原始相对链接
+            return `](${link})`;
+          })
+          // 转义裸尖括号
+          .replace(/<(?=[A-Za-z])/g, '&lt;')
+          .replace(/(?<=[A-Za-z0-9_\]])>/g, '&gt;')
+      );
     })
     .join('\n');
 }
@@ -149,14 +191,48 @@ function organizeDocs() {
     const src = join(TMP_DIR, pkg);
     const dst = join(DOCS_DIR, pkg);
     if (!existsSync(src)) continue;
-    // 复制并对每个 .md 文件做 VitePress 安全处理
     cpSync(src, dst, { recursive: true });
+
+    // 扁平化 TypeDoc 的 @chanjet-openapi/namespaces/ 嵌套结构：
+    // core/@chanjet-openapi/namespaces/auth/  → core/auth/
+    // accounting/@chanjet-openapi/namespaces/api/namespaces/<mod>/ → accounting/<mod>/
+    // accounting/@chanjet-openapi/namespaces/auth/  → 删除（core 已有）
+    const nsDir = join(dst, '@chanjet-openapi', 'namespaces');
+    if (existsSync(nsDir)) {
+      for (const ns of readdirSync(nsDir, { withFileTypes: true })) {
+        if (!ns.isDirectory()) continue;
+        if (ns.name === 'auth') {
+          // core 的 auth 命名空间提升到 pkg/auth/
+          const authSrc = join(nsDir, ns.name);
+          const authDst = join(dst, 'auth');
+          if (pkg === 'core') {
+            cpSync(authSrc, authDst, { recursive: true });
+          }
+          // accounting 的 auth 是 re-export，跳过
+        } else if (ns.name === 'api') {
+          // accounting 的 api 命名空间下的子模块提升到 pkg/<mod>/
+          const apiNsDir = join(nsDir, ns.name, 'namespaces');
+          if (existsSync(apiNsDir)) {
+            for (const mod of readdirSync(apiNsDir, { withFileTypes: true })) {
+              if (!mod.isDirectory()) continue;
+              const modSrc = join(apiNsDir, mod.name);
+              const modDst = join(dst, mod.name);
+              cpSync(modSrc, modDst, { recursive: true });
+            }
+          }
+        }
+      }
+      // 删除整个 @chanjet-openapi 目录
+      rmSync(join(dst, '@chanjet-openapi'), { recursive: true, force: true });
+    }
+
+    // 对每个 .md 文件做 VitePress 安全处理
     const mdFiles = walkMd(dst);
     for (const file of mdFiles) {
       const raw = readFileSync(file, 'utf-8');
-      writeFileSync(file, escapeAngleBrackets(raw), 'utf-8');
+      writeFileSync(file, processMarkdown(raw, file, dst), 'utf-8');
     }
-    // 将每个目录下的 README.md 重命名为 index.md（VitePress 映射为 /dir/）
+    // README.md → index.md（VitePress 映射为 /dir/）
     renameReadmeToIndex(dst);
     console.log(`  ${pkg}/ → docs/${pkg}/ (${mdFiles.length} files)`);
   }
