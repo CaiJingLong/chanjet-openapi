@@ -121,9 +121,10 @@ function runTypedoc(pkg) {
 function organizeDocs() {
   console.log('\n📂 [组织] 复制 markdown 到 docs/');
 
-  // 清空 docs/ 内容（保留 .vitepress/）
+  // 清空 docs/ 的生成内容（保留 .vitepress/ 和手写页面）
+  const PRESERVE = new Set(['.vitepress', 'index.md', 'llms.md']);
   for (const entry of readdirSync(DOCS_DIR)) {
-    if (entry === '.vitepress') continue;
+    if (PRESERVE.has(entry)) continue;
     rmSync(join(DOCS_DIR, entry), { recursive: true, force: true });
   }
 
