@@ -123,17 +123,19 @@ packages/<product>/           # 每产品一个包（如 accounting）
 
 ### 9.3 发布流程
 
-- **首发**：每个包第一版由维护者手动执行 `npm publish`（需先 `pnpm -r build` 生成 dist）。首发后版本号为 `0.1.0`。
+- **首发**：每个包第一版由维护者手动执行 `pnpm publish --filter @chanjet-openapi/<pkg>`（需先 `pnpm -r build` 生成 dist；本地不加 `--provenance`，该标志仅 CI OIDC 环境可用）。首发后版本号为 `0.1.0`。
 - **后续发布**：全部通过 GitHub Actions 自动执行，使用 OIDC（OpenID Connect）鉴权，无需 npm token 入库。
 - 发布前 CI 必须执行完整验证：`pnpm -r build && pnpm -r typecheck && pnpm -r test && pnpm format:check`，全通过后才 publish。
 - `workspace:*` 依赖在 `pnpm publish` 时自动替换为实际版本号，无需手动修改。
 
-### 9.4 changesets
+### 9.4 changesets 与 CHANGELOG
 
 - 使用 changesets 管理变更记录与版本提升。每次变更（bugfix / feature / breaking）须附带一个 changeset 文件。
 - changeset 文件放在 `.changeset/` 目录，格式为 Markdown frontmatter（包名 + bump 类型）+ 变更描述。
 - CHANGELOG.md 由 changesets 自动生成，不手动编辑。
+- changeset 描述用中文，第一行为摘要，后续行为细节列表；破坏性更改标注 `**破坏性更改**：` 前缀。
 - 配置文件 `.changeset/config.json` 控制 changeset 行为（access、baseBranch 等）。
+- 发布操作的完整流程（首发手动 / 后续 CI / changeset 编写 / 新包接入）见 `chanjet-release` skill。
 
 ### 9.5 npm 发布配置
 
@@ -145,7 +147,7 @@ packages/<product>/           # 每产品一个包（如 accounting）
 
 ### 9.6 GitHub Actions OIDC
 
-- 发布 workflow 使用 `id-token: write` 权限 + `npm publish --provenance` 发布。
+- 发布 workflow 使用 `id-token: write` 权限 + `pnpm publish -r --provenance` 发布，CI 环境 Node >= 22（OIDC trusted publishing 要求）。
 - 触发条件：changeset 消费 PR 合并到主分支（Changesets bot 自动创建）。
 - workflow 文件位于 `.github/workflows/publish.yml`。
 
@@ -177,5 +179,5 @@ packages/<product>/           # 每产品一个包（如 accounting）
 - 禁止用 sed/文本替换做跨文件重命名（必须走 LSP）。
 - 禁止在日常开发中修改 `package.json` 的 `version` 字段（首发除外，见 §9.2）。
 - 禁止手动编辑 CHANGELOG.md（由 changesets 自动生成，见 §9.4）。
-- 禁止在非发布流程中执行 `npm publish`（首发除外，见 §9.3）。
+- 禁止在非发布流程中执行 `pnpm publish`（首发除外，见 §9.3）。
 - 禁止将含 `_authToken` 的 `.npmrc` 提交到版本库（OIDC 模式不需要，见 §9.5）。
