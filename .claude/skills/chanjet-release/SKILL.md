@@ -87,8 +87,8 @@ pnpm publish --filter @chanjet-openapi/<pkg> --dry-run --registry https://regist
 # 4. 发布（本地手动发布不加 --provenance，该标志仅 CI OIDC 环境可用）
 pnpm publish --filter @chanjet-openapi/<pkg> --registry https://registry.npmjs.org
 
-# 5. 验证
-npm view @chanjet-openapi/<pkg>@0.1.0
+# 5. 验证（必须指定官方 registry，镜像可能尚未同步）
+npm view @chanjet-openapi/<pkg>@0.1.0 --registry https://registry.npmjs.org
 ```
 
 > **注意**：如果本地 registry 已是官方 `https://registry.npmjs.org`，可省略 `--registry` 参数。

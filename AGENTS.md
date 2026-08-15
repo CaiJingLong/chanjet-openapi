@@ -144,6 +144,7 @@ packages/<product>/           # 每产品一个包（如 accounting）
 - `dist/` 在 `.gitignore` 中，不入版本库；CI 发布前必须 build。
 - 构建顺序：`pnpm -r build` 按拓扑排序执行，core 先于产品包。`pnpm -r typecheck` 前须先 build core 以生成 dist 产物。
 - 禁止任何含 `_authToken` 的 `.npmrc` 入库；OIDC 模式不需要持久化 token。
+- 所有 npm 校验包（`npm view`）和发布命令必须显式指定 `--registry https://registry.npmjs.org`，即使本地 registry 配置为镜像（如 npmmirror），镜像可能尚未同步刚发布的包，导致校验失败或发布到错误 registry。
 
 ### 9.6 GitHub Actions OIDC
 
